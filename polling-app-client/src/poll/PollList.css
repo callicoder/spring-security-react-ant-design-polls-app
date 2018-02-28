@@ -1,0 +1,10 @@
+.no-polls-found {
+    font-size: 20px;
+    text-align: center;
+    padding: 20px;    
+}
+
+.load-more-polls {
+    text-align: center;
+    margin-bottom: 40px;    
+}

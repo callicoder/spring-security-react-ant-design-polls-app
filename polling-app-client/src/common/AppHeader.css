@@ -1,0 +1,86 @@
+.app-title {
+    float: left;
+  }
+  
+  .app-title a {
+    text-decoration: none;
+    line-height: 64px;
+    font-size: 21px;
+    display: inline-block;
+  }
+  
+  .app-title a:hover {
+    text-decoration: none;
+  }
+  
+  .app-header {
+    position: fixed;
+    width: 100%;
+    box-shadow: 0 2px 8px #f0f1f2;
+    z-index: 10;
+    padding: 0;
+  }
+  
+  .app-menu {
+    float: right;
+  }
+  
+  .app-menu > li {
+    padding: 0 20px;
+  }
+
+  .app-menu > li > a {
+    padding: 0 20px;
+    margin: 0 -20px;
+  }
+
+  .app-menu > li > a > i {
+    margin-right: 0 !important;
+  }
+
+  .profile-dropdown-menu {
+    min-width: 180px;
+  }
+
+  .profile-menu .user-full-name-info {
+    font-size: 17px;
+    font-weight: 600;
+    color: rgba(0,0,0,0.85);
+  }
+  
+  .profile-menu .username-info {
+    font-size: 14px;
+    color: rgba(0,0,0,0.65);
+  }
+
+  .dropdown-item {
+    padding: 10px 12px;
+  }
+
+  .dropdown-item a {
+    padding: 10px 12px;
+    margin: -10px -12px;
+  }
+  
+  .nav-icon {
+    font-size: 20px;
+  }
+
+  .poll-icon {
+    margin-top: -4px;
+  }
+
+@media (max-width: 768px) {
+  .app-title a {
+    font-size: 20px;
+  }
+
+  .app-menu > li {
+    padding: 0 15px;
+  }
+
+  .app-menu > li > a {
+    padding: 0 15px;
+    margin: 0 -15px;
+  }
+}  

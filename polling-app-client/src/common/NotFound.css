@@ -1,0 +1,23 @@
+.page-not-found {
+    max-width: 500px;
+    margin: 0 auto;
+    margin-top: 50px;
+    padding: 40px;
+    border: 1px solid #c8c8c8; 
+    text-align: center;   
+}
+
+.page-not-found .title {
+    font-size: 50px;
+    letter-spacing: 10px;
+    margin-bottom: 10px;
+}
+
+.page-not-found .desc {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.go-back-btn {
+    min-width: 160px;
+}

@@ -1,0 +1,54 @@
+.user-details {
+    margin-bottom: 44px;
+    padding-top: 40px;
+    padding-bottom: 20px;
+}
+
+.user-avatar {
+    text-align: center;
+}
+
+.user-avatar-circle {
+    width: 120px;
+    height: 120px;
+    border-radius: 60px;
+    line-height: 60px;
+}
+
+.user-avatar-circle > * {
+    line-height: 120px;
+    font-size: 40px;
+    position: relative !important;
+    left: 0 !important;
+}
+
+.user-summary {
+    text-align: center;
+}
+
+@media (min-width: 576px) {
+    .user-summary {
+        text-align: left;
+    }    
+}
+
+.user-summary .full-name {
+    font-size: 30px;
+    font-weight: 600;
+    color: rgba(0,0,0,0.85);
+}
+
+.user-summary .username {
+    font-size: 20px;
+}
+
+.user-summary .user-joined {
+    margin-top: 5px;
+}
+
+@media (max-width: 768px) {
+    .user-summary .full-name {
+        font-size: 24px;
+    }    
+}
+
