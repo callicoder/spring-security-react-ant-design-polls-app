@@ -1,5 +1,4 @@
-//export const API_BASE_URL = 'http://localhost:5000';
-export const API_BASE_URL = 'http://polling-app-server-dev.us-west-2.elasticbeanstalk.com';
+export const API_BASE_URL = 'http://localhost:5000';
 export const ACCESS_TOKEN = 'accessToken';
 
 export const POLL_LIST_SIZE = 30;
