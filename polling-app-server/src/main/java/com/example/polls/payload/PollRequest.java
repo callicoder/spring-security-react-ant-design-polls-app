@@ -7,7 +7,7 @@ import java.util.List;
 
 public class PollRequest {
     @NotNull
-    @Size(min = 1)
+    @Size(min = 1, max = 140)
     private String question;
 
     @NotNull

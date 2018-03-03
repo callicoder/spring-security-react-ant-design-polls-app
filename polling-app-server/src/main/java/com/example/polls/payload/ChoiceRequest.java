@@ -5,7 +5,7 @@ import javax.validation.constraints.Size;
 
 public class ChoiceRequest {
     @NotNull
-    @Size(min = 1)
+    @Size(min = 1, max = 40)
     private String text;
 
     public String getText() {
