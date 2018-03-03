@@ -176,6 +176,13 @@ class Signup extends Component {
     }
 
     validateEmail = (email) => {
+        if(!email) {
+            return {
+                validateStatus: 'error',
+                errorMsg: 'Email may not be empty'                
+            }
+        }
+
         const EMAIL_REGEX = RegExp('[^@ ]+@[^@ ]+\\.[^@ ]+');
         if(!EMAIL_REGEX.test(email)) {
             return {
@@ -217,11 +224,20 @@ class Signup extends Component {
     }
 
     validateUsernameAvailability() {
-        if(this.state.username.validateStatus === 'error') {
+        // First check for client side errors in username
+        const usernameValue = this.state.username.value;
+        const usernameValidation = this.validateUsername(usernameValue);
+
+        if(usernameValidation.validateStatus === 'error') {
+            this.setState({
+                username: {
+                    value: usernameValue,
+                    ...usernameValidation
+                }
+            });
             return;
         }
 
-        const usernameValue = this.state.username.value;
         this.setState({
             username: {
                 value: usernameValue,
@@ -230,7 +246,7 @@ class Signup extends Component {
             }
         });
 
-        checkUsernameAvailability(this.state.username.value)
+        checkUsernameAvailability(usernameValue)
         .then(response => {
             if(response.available) {
                 this.setState({
@@ -262,11 +278,20 @@ class Signup extends Component {
     }
 
     validateEmailAvailability() {
-        if(this.state.email.validateStatus === 'error') {
+        // First check for client side errors in email
+        const emailValue = this.state.email.value;
+        const emailValidation = this.validateEmail(emailValue);
+
+        if(emailValidation.validateStatus === 'error') {
+            this.setState({
+                email: {
+                    value: emailValue,
+                    ...emailValidation
+                }
+            });    
             return;
         }
 
-        const emailValue = this.state.email.value;
         this.setState({
             email: {
                 value: emailValue,
@@ -275,7 +300,7 @@ class Signup extends Component {
             }
         });
 
-        checkEmailAvailability(this.state.email.value)
+        checkEmailAvailability(emailValue)
         .then(response => {
             if(response.available) {
                 this.setState({
