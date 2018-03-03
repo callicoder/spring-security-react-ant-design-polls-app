@@ -2,10 +2,9 @@ package com.example.polls.model;
 
 import com.example.polls.model.audit.DateAudit;
 import org.hibernate.annotations.NaturalId;
-import org.hibernate.validator.constraints.Email;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
@@ -36,9 +35,9 @@ public class User extends DateAudit {
     @Size(max = 15)
     private String username;
 
-    @Email
     @NaturalId
     @Size(max = 40)
+    @Pattern(regexp = "[^@ ]+@[^@ ]+\\.[^@ ]+")
     private String email;
 
     @NotNull
