@@ -30,7 +30,7 @@ class NewPoll extends Component {
         this.handleQuestionChange = this.handleQuestionChange.bind(this);
         this.handleChoiceChange = this.handleChoiceChange.bind(this);
         this.handlePollDaysChange = this.handlePollDaysChange.bind(this);
-        this.handlePollHoursChange = this.hanldePollHoursChange.bind(this);
+        this.handlePollHoursChange = this.handlePollHoursChange.bind(this);
         this.isFormInvalid = this.isFormInvalid.bind(this);
     }
 
@@ -145,7 +145,7 @@ class NewPoll extends Component {
         });
     }
 
-    hanldePollHoursChange(value) {
+    handlePollHoursChange(value) {
         const pollLength = Object.assign(this.state.pollLength, {hours: value});
         this.setState({
             pollLength: pollLength
@@ -157,11 +157,12 @@ class NewPoll extends Component {
             return true;
         }
     
-        this.state.choices.forEach(choice => {
+        for(let i = 0; i < this.state.choices.length; i++) {
+            const choice = this.state.choices[i];            
             if(choice.validateStatus !== 'success') {
                 return true;
             }
-        });
+        }
     }
 
     render() {
