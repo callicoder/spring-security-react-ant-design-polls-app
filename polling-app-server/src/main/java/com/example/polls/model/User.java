@@ -3,8 +3,9 @@ package com.example.polls.model;
 import com.example.polls.model.audit.DateAudit;
 import org.hibernate.annotations.NaturalId;
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
@@ -27,20 +28,21 @@ public class User extends DateAudit {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotNull
+    @NotBlank
     @Size(max = 40)
     private String name;
 
-    @NotNull
+    @NotBlank
     @Size(max = 15)
     private String username;
 
     @NaturalId
+    @NotBlank
     @Size(max = 40)
-    @Pattern(regexp = "[^@ ]+@[^@ ]+\\.[^@ ]+")
+    @Email
     private String email;
 
-    @NotNull
+    @NotBlank
     @Size(max = 100)
     private String password;
 

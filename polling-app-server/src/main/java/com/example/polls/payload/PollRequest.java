@@ -1,13 +1,14 @@
 package com.example.polls.payload;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.List;
 
 public class PollRequest {
-    @NotNull
-    @Size(min = 1, max = 140)
+    @NotBlank
+    @Size(max = 140)
     private String question;
 
     @NotNull

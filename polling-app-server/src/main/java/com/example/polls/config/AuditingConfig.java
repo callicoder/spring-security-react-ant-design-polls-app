@@ -9,6 +9,8 @@ import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
+import java.util.Optional;
+
 @Configuration
 @EnableJpaAuditing
 public class AuditingConfig {
@@ -22,15 +24,17 @@ public class AuditingConfig {
 class SpringSecurityAuditAwareImpl implements AuditorAware<Long> {
 
     @Override
-    public Long getCurrentAuditor() {
+    public Optional<Long> getCurrentAuditor() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
         if (authentication == null ||
                 !authentication.isAuthenticated() ||
                 authentication instanceof AnonymousAuthenticationToken) {
-            return null;
+            return Optional.empty();
         }
 
-        return ((UserPrincipal) authentication.getPrincipal()).getId();
+        UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
+
+        return Optional.ofNullable(userPrincipal.getId());
     }
 }

@@ -1,28 +1,26 @@
 package com.example.polls.payload;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 /**
  * Created by rajeevkumarsingh on 02/08/17.
  */
 
 public class SignUpRequest {
-    @NotNull
+    @NotBlank
     @Size(min = 4, max = 40)
     private String name;
 
-    @NotNull
+    @NotBlank
     @Size(min = 3, max = 15)
     private String username;
 
-    @NotNull
+    @NotBlank
     @Size(max = 40)
-    @Pattern(regexp = "[^@ ]+@[^@ ]+\\.[^@ ]+")
+    @Email
     private String email;
 
-    @NotNull
+    @NotBlank
     @Size(min = 6, max = 20)
     private String password;
 

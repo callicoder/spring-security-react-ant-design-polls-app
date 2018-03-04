@@ -1,11 +1,11 @@
 package com.example.polls.payload;
 
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 public class ChoiceRequest {
-    @NotNull
-    @Size(min = 1, max = 40)
+    @NotBlank
+    @Size(max = 40)
     private String text;
 
     public String getText() {
