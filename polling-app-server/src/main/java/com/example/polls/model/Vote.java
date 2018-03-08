@@ -1,14 +1,13 @@
 package com.example.polls.model;
 
 import com.example.polls.model.audit.DateAudit;
-
 import javax.persistence.*;
 
 @Entity
 @Table(name = "votes")
 public class Vote extends DateAudit {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
