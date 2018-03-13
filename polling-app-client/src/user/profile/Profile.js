@@ -82,7 +82,7 @@ class Profile extends Component {
                         <Row className="user-details">
                             <Col xs={24} sm={8} md={9} className="user-avatar">
                                 <Avatar className="user-avatar-circle" style={{ backgroundColor: getAvatarColor(this.state.user.name)}}>
-                                    {this.state.user.name[0]}
+                                    {this.state.user.name[0].toUpperCase()}
                                 </Avatar>
                             </Col>
                             <Col xs={24} sm={16} md={15} className="user-summary">
