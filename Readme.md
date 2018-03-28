@@ -2,7 +2,7 @@
 
 ### Live Demo
  	 
-The application is hosted on AWS free tier. Check out the live demo at http://polls.callicoder.com
+The application is hosted on AWS free tier. Check out the live demo at https://polls.callicoder.com
 
 ### Tutorials
 
