@@ -32,7 +32,7 @@ import java.util.stream.Collectors;
  */
 
 @RestController
-@RequestMapping("/polls")
+@RequestMapping("/api/polls")
 public class PollController {
 
     @Autowired

@@ -79,20 +79,22 @@ class Profile extends Component {
             <div className="profile">
                 { 
                     this.state.user ? (
-                        <Row className="user-details">
-                            <Col xs={24} sm={8} md={9} className="user-avatar">
-                                <Avatar className="user-avatar-circle" style={{ backgroundColor: getAvatarColor(this.state.user.name)}}>
-                                    {this.state.user.name[0].toUpperCase()}
-                                </Avatar>
-                            </Col>
-                            <Col xs={24} sm={16} md={15} className="user-summary">
-                                <div className="full-name">{this.state.user.name}</div>
-                                <div className="username">@{this.state.user.username}</div>
-                                <div className="user-joined">
-                                    Joined {formatDate(this.state.user.joinedAt)}
+                        <div className="user-profile">
+                            <div className="user-details">
+                                <div className="user-avatar">
+                                    <Avatar className="user-avatar-circle" style={{ backgroundColor: getAvatarColor(this.state.user.name)}}>
+                                        {this.state.user.name[0].toUpperCase()}
+                                    </Avatar>
                                 </div>
-                            </Col>
-                            <Col xs={24}>
+                                <div className="user-summary">
+                                    <div className="full-name">{this.state.user.name}</div>
+                                    <div className="username">@{this.state.user.username}</div>
+                                    <div className="user-joined">
+                                        Joined {formatDate(this.state.user.joinedAt)}
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="user-poll-details">    
                                 <Tabs defaultActiveKey="1" 
                                     animated={false}
                                     tabBarStyle={tabBarStyle}
@@ -105,8 +107,8 @@ class Profile extends Component {
                                         <PollList username={this.props.match.params.username} type="USER_VOTED_POLLS" />
                                     </TabPane>
                                 </Tabs>
-                            </Col>
-                        </Row>    
+                            </div>  
+                        </div>  
                     ): null               
                 }
             </div>

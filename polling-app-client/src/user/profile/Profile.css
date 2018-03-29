@@ -2,9 +2,7 @@
     margin-bottom: 44px;
     padding-top: 40px;
     padding-bottom: 20px;
-}
-
-.user-avatar {
+    margin: 0 auto;
     text-align: center;
 }
 
@@ -24,18 +22,34 @@
 
 .user-summary {
     text-align: center;
+    padding-top: 20px;
 }
 
 @media (min-width: 576px) {
-    .user-summary {
+    .user-details {
         text-align: left;
+        display: table;
     }    
+
+    .user-avatar, .user-summary {
+        float: left;
+        text-align: left;
+    }
+
+    .user-summary {
+        padding-top: 0;
+        padding-left: 40px;
+        width: calc(100% - 120px);
+    }
 }
 
 .user-summary .full-name {
     font-size: 30px;
     font-weight: 600;
     color: rgba(0,0,0,0.85);
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .user-summary .username {
