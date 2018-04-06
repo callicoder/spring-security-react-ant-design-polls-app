@@ -53,6 +53,16 @@ I've written a complete tutorial series for this application on The CalliCoder B
 	mvn package
 	java -jar target/polls-0.0.1-SNAPSHOT.jar
 	```
+5 **Add the default Roles**
+	
+	The spring boot app uses role based authorization powered by spring security. Please execute the following sql queries in the database to insert the `USER` and `ADMIN` roles.
+
+	```sql
+	INSERT INTO roles(name) VALUES('ROLE_USER');
+	INSERT INTO roles(name) VALUES('ROLE_ADMIN');
+	```
+
+	Any new user who signs up to the app is assigned the `ROLE_USER` by default.
 
 ## Steps to Setup the React Front end app (polling-app-client)
 
