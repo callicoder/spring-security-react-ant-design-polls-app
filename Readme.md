@@ -20,39 +20,39 @@ I've written a complete tutorial series for this application on The CalliCoder B
 
 1. **Clone the application**
 
-```bash
-git clone https://github.com/callicoder/spring-boot-mysql-rest-api-tutorial.git
-cd polling-app-server
-```
+	```bash
+	git clone https://github.com/callicoder/spring-boot-mysql-rest-api-tutorial.git
+	cd polling-app-server
+	```
 
 2. **Create MySQL database**
 
-```bash
-create database polling_app
-```
+	```bash
+	create database polling_app
+	```
 
 3. **Change MySQL username and password as per your MySQL installation**
 
-+ open `src/main/resources/application.properties` file.
+	+ open `src/main/resources/application.properties` file.
 
-+ change `spring.datasource.username` and `spring.datasource.password` properties as per your mysql installation
+	+ change `spring.datasource.username` and `spring.datasource.password` properties as per your mysql installation
 
 4. **Run the app**
 
-You can run the spring boot app by typing the following command -
+	You can run the spring boot app by typing the following command -
 
-```bash
-mvn spring-boot:run
-```
+	```bash
+	mvn spring-boot:run
+	```
 
-The server will start on port 5000. The spring boot app includes the front end build also, so you'll be able to access the complete application on `http://localhost:5000`.
+	The server will start on port 5000. The spring boot app includes the front end build also, so you'll be able to access the complete application on `http://localhost:5000`.
 
-You can also package the application in the form of a `jar` and then run it like so -
+	You can also package the application in the form of a `jar` and then run it like so -
 
-```bash
-mvn package
-java -jar target/polls-0.0.1-SNAPSHOT.jar
-```
+	```bash
+	mvn package
+	java -jar target/polls-0.0.1-SNAPSHOT.jar
+	```
 
 ## Steps to Setup the React Front end app (polling-app-client)
 
@@ -62,7 +62,7 @@ First go to the `polling-app-client` folder -
 cd polling-app-client
 ```
 
-And type the following command to install the dependencies and start the application
+Then type the following command to install the dependencies and start the application -
 
 ```bash
 npm install && npm start
