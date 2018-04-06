@@ -15,3 +15,57 @@ I've written a complete tutorial series for this application on The CalliCoder B
 + [Part 3: Building Rest APIs for creating Polls, voting for a choice in a Poll, retrieving user profile etc](https://www.callicoder.com/spring-boot-spring-security-jwt-mysql-react-app-part-3/)
 
 + [Part 4: Building the front-end using React and Ant Design](https://www.callicoder.com/spring-boot-spring-security-jwt-mysql-react-app-part-4/)
+
+## Steps to Setup the Spring Boot Back end app (polling-app-server)
+
+1. **Clone the application**
+
+```bash
+git clone https://github.com/callicoder/spring-boot-mysql-rest-api-tutorial.git
+cd polling-app-server
+```
+
+2. **Create MySQL database**
+
+```bash
+create database polling_app
+```
+
+3. **Change MySQL username and password as per your MySQL installation**
+
++ open `src/main/resources/application.properties` file.
+
++ change `spring.datasource.username` and `spring.datasource.password` properties as per your mysql installation
+
+4. **Run the app**
+
+You can run the spring boot app by typing the following command -
+
+```bash
+mvn spring-boot:run
+```
+
+The server will start on port 5000. The spring boot app includes the front end build also, so you'll be able to access the complete application on `http://localhost:5000`.
+
+You can also package the application in the form of a `jar` and then run it like so -
+
+```bash
+mvn package
+java -jar target/polls-0.0.1-SNAPSHOT.jar
+```
+
+## Steps to Setup the React Front end app (polling-app-client)
+
+First go to the `polling-app-client` folder -
+
+```bash
+cd polling-app-client
+```
+
+And type the following command to install the dependencies and start the application
+
+```bash
+npm install && npm start
+```
+
+The front-end server will start on port `3000`.

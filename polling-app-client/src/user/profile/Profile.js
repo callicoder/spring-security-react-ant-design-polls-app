@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PollList from '../../poll/PollList';
 import { getUserProfile } from '../../util/APIUtils';
-import { Avatar, Row, Col, Tabs } from 'antd';
+import { Avatar, Tabs } from 'antd';
 import { getAvatarColor } from '../../util/Colors';
 import { formatDate } from '../../util/Helpers';
 import LoadingIndicator  from '../../common/LoadingIndicator';
