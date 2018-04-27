@@ -125,7 +125,7 @@ public class PollController {
         User user = userRepository.getOne(userPrincipal.getId());
 
         Choice selectedChoice = poll.getChoices().stream()
-                .filter(choice -> choice.getId() == voteRequest.getChoiceId())
+                .filter(choice -> choice.getId().equals(voteRequest.getChoiceId()))
                 .findFirst()
                 .orElseThrow(() -> new ResourceNotFoundException("Choice", "id", voteRequest.getChoiceId()));
 
