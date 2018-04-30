@@ -7,7 +7,7 @@ import com.example.polls.model.Role;
 import com.example.polls.model.RoleName;
 import com.example.polls.model.User;
 import com.example.polls.payload.*;
-import com.example.polls.repository.RefreshTokenRepository;
+import com.example.polls.repository.JwtRefreshTokenRepository;
 import com.example.polls.repository.RoleRepository;
 import com.example.polls.repository.UserRepository;
 import com.example.polls.security.JwtTokenProvider;
@@ -56,7 +56,7 @@ public class AuthController {
     JwtTokenProvider tokenProvider;
 
     @Autowired
-    RefreshTokenRepository refreshTokenRepository;
+    JwtRefreshTokenRepository jwtRefreshTokenRepository;
 
     @Value("${app.jwtExpirationInMs}")
     private long jwtExpirationInMs;
@@ -85,7 +85,7 @@ public class AuthController {
 
     @PostMapping("/refreshToken")
     public ResponseEntity<?> refreshAccessToken(@Valid @RequestBody RefreshTokenRequest refreshTokenRequest) {
-        return refreshTokenRepository.findById(refreshTokenRequest.getRefreshToken()).map(jwtRefreshToken -> {
+        return jwtRefreshTokenRepository.findById(refreshTokenRequest.getRefreshToken()).map(jwtRefreshToken -> {
             User user = jwtRefreshToken.getUser();
             String accessToken = tokenProvider.generateToken(UserPrincipal.create(user));
             return ResponseEntity.ok(new JwtAuthenticationResponse(accessToken, jwtRefreshToken.getToken(), jwtExpirationInMs));
@@ -101,7 +101,7 @@ public class AuthController {
         Instant expirationDateTime = Instant.now().plus(360, ChronoUnit.DAYS);  // Todo Add this in application.properties
         jwtRefreshToken.setExpirationDateTime(expirationDateTime);
 
-        refreshTokenRepository.save(jwtRefreshToken);
+        jwtRefreshTokenRepository.save(jwtRefreshToken);
     }
 
     @PostMapping("/signup")
