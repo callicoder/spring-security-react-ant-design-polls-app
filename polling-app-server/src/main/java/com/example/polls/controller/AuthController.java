@@ -1,17 +1,19 @@
 package com.example.polls.controller;
 
 import com.example.polls.exception.AppException;
+import com.example.polls.exception.BadRequestException;
+import com.example.polls.model.JwtRefreshToken;
 import com.example.polls.model.Role;
 import com.example.polls.model.RoleName;
 import com.example.polls.model.User;
-import com.example.polls.payload.ApiResponse;
-import com.example.polls.payload.JwtAuthenticationResponse;
-import com.example.polls.payload.LoginRequest;
-import com.example.polls.payload.SignUpRequest;
+import com.example.polls.payload.*;
+import com.example.polls.repository.RefreshTokenRepository;
 import com.example.polls.repository.RoleRepository;
 import com.example.polls.repository.UserRepository;
 import com.example.polls.security.JwtTokenProvider;
+import com.example.polls.security.UserPrincipal;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -27,6 +29,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.Collections;
 
 /**
@@ -51,6 +55,12 @@ public class AuthController {
     @Autowired
     JwtTokenProvider tokenProvider;
 
+    @Autowired
+    RefreshTokenRepository refreshTokenRepository;
+
+    @Value("${app.jwtExpirationInMs}")
+    private long jwtExpirationInMs;
+
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
@@ -63,8 +73,35 @@ public class AuthController {
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        String jwt = tokenProvider.generateToken(authentication);
-        return ResponseEntity.ok(new JwtAuthenticationResponse(jwt));
+        UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
+
+        String accessToken = tokenProvider.generateToken(userPrincipal);
+        String refreshToken = tokenProvider.generateRefreshToken();
+
+        saveRefreshToken(userPrincipal, refreshToken);
+
+        return ResponseEntity.ok(new JwtAuthenticationResponse(accessToken, refreshToken, jwtExpirationInMs));
+    }
+
+    @PostMapping("/refreshToken")
+    public ResponseEntity<?> refreshAccessToken(@Valid @RequestBody RefreshTokenRequest refreshTokenRequest) {
+        return refreshTokenRepository.findById(refreshTokenRequest.getRefreshToken()).map(jwtRefreshToken -> {
+            User user = jwtRefreshToken.getUser();
+            String accessToken = tokenProvider.generateToken(UserPrincipal.create(user));
+            return ResponseEntity.ok(new JwtAuthenticationResponse(accessToken, jwtRefreshToken.getToken(), jwtExpirationInMs));
+        }).orElseThrow(() -> new BadRequestException("Invalid Refresh Token"));
+    }
+
+    private void saveRefreshToken(UserPrincipal userPrincipal, String refreshToken) {
+        // Persist Refresh Token
+
+        JwtRefreshToken jwtRefreshToken = new JwtRefreshToken(refreshToken);
+        jwtRefreshToken.setUser(userRepository.getOne(userPrincipal.getId()));
+
+        Instant expirationDateTime = Instant.now().plus(360, ChronoUnit.DAYS);  // Todo Add this in application.properties
+        jwtRefreshToken.setExpirationDateTime(expirationDateTime);
+
+        refreshTokenRepository.save(jwtRefreshToken);
     }
 
     @PostMapping("/signup")

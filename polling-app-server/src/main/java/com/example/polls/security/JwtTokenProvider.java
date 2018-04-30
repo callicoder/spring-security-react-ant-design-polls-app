@@ -8,6 +8,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
+import java.util.UUID;
 
 /**
  * Created by rajeevkumarsingh on 19/08/17.
@@ -21,12 +22,9 @@ public class JwtTokenProvider {
     private String jwtSecret;
 
     @Value("${app.jwtExpirationInMs}")
-    private int jwtExpirationInMs;
+    private long jwtExpirationInMs;
 
-    public String generateToken(Authentication authentication) {
-
-        UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
-
+    public String generateToken(UserPrincipal userPrincipal) {
         Date now = new Date();
         Date expiryDate = new Date(now.getTime() + jwtExpirationInMs);
 
@@ -36,6 +34,11 @@ public class JwtTokenProvider {
                 .setExpiration(expiryDate)
                 .signWith(SignatureAlgorithm.HS512, jwtSecret)
                 .compact();
+    }
+
+    public String generateRefreshToken() {
+        // generate a random UUID as refresh token
+        return UUID.randomUUID().toString();
     }
 
     public Long getUserIdFromJWT(String token) {
