@@ -38,9 +38,15 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 Long userId = tokenProvider.getUserIdFromJWT(jwt);
 
                 /*
+                    == Load user's details from the database == 
+
                     Note that you could also encode the user's username and roles inside JWT claims
                     and create the UserDetails object by parsing those claims from the JWT.
-                    That would avoid the following database hit. It's completely up to you.
+                    That would avoid the following database hit.
+
+                    However, Loading the current details of the user from the database might still be helpful. 
+                    For example, you might wanna disallow login with this JWT if the user’s role has changed, 
+                    or the user has updated his password after the creation of this JWT.
                  */
                 UserDetails userDetails = customUserDetailsService.loadUserById(userId);
                 UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
