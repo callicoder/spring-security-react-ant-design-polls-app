@@ -4,7 +4,12 @@ import com.example.polls.model.audit.DateAudit;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "votes")
+@Table(name = "votes", uniqueConstraints = {
+        @UniqueConstraint(columnNames = {
+                "poll_id",
+                "user_id"
+        })
+})
 public class Vote extends DateAudit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
