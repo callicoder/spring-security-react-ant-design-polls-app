@@ -21,7 +21,7 @@ I've written a complete tutorial series for this application on The CalliCoder B
 1. **Clone the application**
 
 	```bash
-	git clone https://github.com/callicoder/spring-boot-mysql-rest-api-tutorial.git
+	git clone https://github.com/callicoder/spring-security-react-ant-design-polls-app.git
 	cd polling-app-server
 	```
 
