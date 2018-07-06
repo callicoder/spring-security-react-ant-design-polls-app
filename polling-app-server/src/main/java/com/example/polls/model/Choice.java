@@ -20,7 +20,7 @@ public class Choice {
     @Size(max = 40)
     private String text;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "poll_id", nullable = false)
     private Poll poll;
 
