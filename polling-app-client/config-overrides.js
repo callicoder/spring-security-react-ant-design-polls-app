@@ -9,6 +9,7 @@ module.exports = function override(config, env) {
           "@layout-header-background": "#FFFFFF",
           "@layout-footer-background": "#FFFFFF" 
       },
+      javascriptEnabled: true
     })(config, env);
     return config;
 };
