@@ -1,0 +1,28 @@
+<div class="profile">
+  <div class="user-profile">
+    <div class="user-details">
+      <div class="user-avatar">
+        <avatar class="user-avatar-circle" [name]="username" [displayType]="'circle'"></avatar>
+      </div>
+      <div class="user-summary">
+        <div class="full-name">{{userInfo.name}}</div>
+        <div class="username">@{{username}}</div>
+        <div class="user-joined">Joined {{userInfo.joinedAt | date:'MMMM yyyy'}}</div>
+      </div>
+    </div>
+    <div>
+      <tabset class="poll-tab-group">
+        <tab heading="{{userInfo.pollCount}} Polls">
+          <div>
+            <app-poll-list [username]='username' [type]='"USER_CREATED_POLLS"'></app-poll-list>
+          </div>
+        </tab>
+        <tab heading="{{userInfo.voteCount}} Votes">
+          <div>
+            <app-poll-list [username]='username' [type]='"USER_VOTED_POLLS"'></app-poll-list>
+          </div>
+        </tab>
+      </tabset>
+    </div>
+  </div>
+</div>

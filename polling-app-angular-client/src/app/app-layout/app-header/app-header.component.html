@@ -1,0 +1,43 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" routerLink="/">
+        <span class="oi oi-list-rich" aria-hidden="true"></span>
+        Polling App
+    </a>
+    <button (click)="isCollapsed = !isCollapsed" class="navbar-toggler collapsed" type="button" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div [collapse]="isCollapsed" class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn(); else templateForNotLoggedIn">
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/polls" routerLinkActive="active">
+                    <span class="oi oi-home" aria-hidden="true" tooltip="Home" placement="bottom"></span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/poll/new" routerLinkActive="active">
+                    <span class="oi oi-list-rich" aria-hidden="true" tooltip="New Poll" placement="bottom"></span>
+                </a>
+            </li>
+            <li class="nav-item dropdown" dropdown>
+                <a class="nav-link dropdown-toggle" dropdownToggle role="button" (click)="false">
+                    <span class="oi oi-person" aria-hidden="true"></span>
+                </a>
+                <ul *dropdownMenu class="dropdown-menu dropdown-menu-right">
+                    <li class="pl-3 font-weight-bold" role="menuitem">{{userInfo.name}}</li>
+                    <li class="pl-3" role="menuitem">@{{userInfo.username}}</li>
+                    <li role="menuitem"><div class="dropdown-divider"></div></li>
+                    <li role="menuitem"><a class="dropdown-item" [routerLink]="['/users', userInfo.username]">Profile</a></li>
+                    <li role="menuitem"><button class="btn btn-link dropdown-item" (click)="logout()">Logout</button></li>
+                </ul>
+            </li>
+        </ul>
+        <ng-template #templateForNotLoggedIn>
+            <div class="ml-auto">
+                <button type="button" class="btn btn-primary" routerLink="login" routerLinkActive="active">Login</button>
+                <button type="button" class="btn btn-primary" routerLink="signup" routerLinkActive="active">Signup</button>
+            </div>
+        </ng-template>
+    </div>
+</nav>

@@ -1,0 +1,53 @@
+<div class="col-sm-6 offset-sm-3">
+  <h2>Sign Up</h2>
+  <form [formGroup]="registerForm" (ngSubmit)="onFormSubmit()">
+      <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" formControlName="name" class="form-control" required
+            [ngClass]="{ 'is-invalid': f.name.touched && f.name.errors }" />
+          <small class="form-text text-muted">Your full name</small>
+          <div *ngIf="f.name.touched && f.name.errors" class="invalid-feedback">
+            <div *ngIf="f.name.errors.required">Full Name is required!</div>
+            <div *ngIf="f.name.errors.minlength">Name is too short (Minimum 4 characters needed.)</div>
+          </div>
+      </div>
+      <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" formControlName="username" class="form-control" required
+            [ngClass]="{ 'is-invalid': f.username.touched && f.username.errors }" />
+          <small class="form-text text-muted">A unique username</small>
+          <div *ngIf="f.username.touched && f.username.errors" class="invalid-feedback">
+            <div *ngIf="f.username.errors.required">Username is required!</div>
+            <div *ngIf="f.username.errors.minlength">Username is too short (Minimum 3 characters needed.)</div>
+            <div *ngIf="f.username.errors.maxlength">Username is too long (Maximum 15 characters needed.)</div>
+            <div *ngIf="f.username.errors.usernameTaken">This username is already taken</div>
+          </div>
+      </div>
+      <div class="form-group">
+        <label for="lastName">Email</label>
+        <input type="text" formControlName="email" class="form-control" required
+          [ngClass]="{ 'is-invalid': f.email.touched && f.email.errors }" />
+        <small class="form-text text-muted">Your email</small>
+        <div *ngIf="f.email.touched && f.email.errors" class="invalid-feedback">
+            <div *ngIf="f.email.errors.required">Email may not be empty</div>
+            <div *ngIf="f.email.errors.pattern">Email not valid</div>
+            <div *ngIf="f.email.errors.emailTaken">This Email is already registered</div>
+        </div>
+      </div>
+      <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" formControlName="password" class="form-control" required
+            [ngClass]="{ 'is-invalid': f.password.touched && f.password.errors }" />
+          <small class="form-text text-muted">A password between 6 to 20 characters</small>
+          <div *ngIf="f.password.touched && f.password.errors" class="invalid-feedback">
+              <div *ngIf="f.password.errors.required">Please input your Password!</div>
+              <div *ngIf="f.password.errors.minlength">Password is too short (Minimum 6 characters needed.)</div>
+              <div *ngIf="f.password.errors.maxlength">Password is too long (Maximum 20 characters needed.)</div>
+          </div>
+      </div>
+      <div class="form-group">
+          <button class="btn btn-primary btn-block">Register</button>
+          Already registered?<a [routerLink]="['/login']" class="btn btn-link">Login now!</a>
+      </div>
+  </form>
+</div>

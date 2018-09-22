@@ -1,0 +1,25 @@
+<div class="col-sm-6 offset-sm-3">
+    <h2>Login</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="usernameOrEmail">Username or Email</label>
+            <input type="text" formControlName="usernameOrEmail" class="form-control" required 
+                [ngClass]="{ 'is-invalid': f.usernameOrEmail.touched && f.usernameOrEmail.errors }" />
+            <div *ngIf="f.usernameOrEmail.touched && f.usernameOrEmail.errors" class="invalid-feedback">
+                <div *ngIf="f.usernameOrEmail.errors.required">Please input your username or email!</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" formControlName="password" class="form-control" required
+                [ngClass]="{ 'is-invalid': f.password.touched && f.password.errors }" />
+            <div *ngIf="f.password.touched && f.password.errors" class="invalid-feedback">
+                <div *ngIf="f.password.errors.required">Please input your Password!</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-primary btn-block">Login</button>
+            <a [routerLink]="['/signup']" class="btn btn-link d-inline-block">Register now!</a>
+        </div>
+    </form>
+</div>

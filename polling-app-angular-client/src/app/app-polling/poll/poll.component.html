@@ -1,0 +1,47 @@
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="card-header">
+                <a [routerLink]="['/users', poll.createdBy.username]" class="creator-link">
+                <span class="poll-creator-avatar">
+                <avatar class="card-img-top" [name]="poll.createdBy.username" [displayType]="'circle'" size="50"></avatar>
+                </span>
+                <span class="poll-creator-name">{{ poll.createdBy.name }}</span>
+                <span class="poll-creator-username">@{{ poll.createdBy.username }}</span>
+                <span class="poll-creation-date">{{ poll.creationDateTime | date:'medium' }}</span>
+                </a>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">{{ poll.question }}</h5>
+                <div class="card-text">
+                    <form [formGroup]="voteForm">
+                      <div *ngFor="let choice of poll.choices; let indx = index">
+                        <div class="cv-poll-choice" *ngIf="poll.selectedChoice || poll.expired">
+                            <span class="cv-poll-choice-details">
+                                <span class="cv-choice-percentage">{{ this.calculatePercentage(poll.totalVotes, choice) }}%</span>
+                                <span class="cv-choice-text">{{ choice.text }}</span>
+                                <span class="oi oi-circle-check selected-choice-icon" *ngIf="poll.selectedChoice === choice.id"></span>
+                            </span>
+                            <span [ngClass]="{'cv-choice-percent-chart': true, 'winner': this.isWinner(poll, choice)}"
+                                [ngStyle]="{'width': (choice.voteCount*100)/poll.totalVotes + '%'}">
+                            </span>
+                        </div>
+                        <div *ngIf="!poll.selectedChoice && !poll.expired">
+                            <input type="radio" formControlName="choiceGroup" name="choiceGroup" [value]="choice.id" (change)="handleVoteChange(poll, choice.id)">
+                            <label class="pl-2" [attr.for]='choice'>{{ choice.text }}</label>
+                        </div>
+                      </div>
+                    </form>
+                </div>
+            </div>
+            <div class="card-footer text-muted">
+                <button class="btn btn-outline-success mr-2" *ngIf="!poll.expired && !poll.selectedChoice" [disabled]="!currentVote" (click)="handleVoteSubmit()">Vote</button>
+                <span>{{ poll.totalVotes }} votes</span>
+                <span class="separator">•</span>
+                <span *ngIf="poll.expired">Final results</span>
+                <span *ngIf="!poll.expired">{{ getTimeRemaining(poll) }}</span>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
