@@ -52,7 +52,7 @@ class Profile extends Component {
         this.loadUserProfile(username);
     }
 
-    componentWillReceiveProps(nextProps) {
+    componentDidUpdate(nextProps) {
         if(this.props.match.params.username !== nextProps.match.params.username) {
             this.loadUserProfile(nextProps.match.params.username);
         }        
