@@ -1,9 +1,5 @@
 ## Building a Full Stack Polls app similar to twitter polls with Spring Boot, Spring Security, JWT, React and Ant Design
 
-### Live Demo
- 	 
-The application is hosted on AWS free tier. Check out the live demo at https://polls.callicoder.com
-
 ### Tutorials
 
 I've written a complete tutorial series for this application on The CalliCoder Blog -
