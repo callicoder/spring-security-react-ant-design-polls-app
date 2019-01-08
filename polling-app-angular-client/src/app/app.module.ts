@@ -9,7 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { AppAuthModule } from './app-auth/app-auth.module';
-import { AppLayoutModule } from './app-layout/app-layout.module';
+import { AppBootstrapModule } from './app-bootstrap/app-bootstrap.module';
 import { AppPollingModule } from './app-polling/app-polling.module';
 import { AppUserModule } from './app-user/app-user.module';
 import { AppAlertModule } from './app-alert/app-alert.module';
@@ -25,7 +25,7 @@ import { AppAlertModule } from './app-alert/app-alert.module';
     ToastrModule.forRoot(),
     AppRoutingModule,
     AppAuthModule,
-    AppLayoutModule,
+    AppBootstrapModule,
     AppPollingModule,
     AppUserModule,
     AppAlertModule
