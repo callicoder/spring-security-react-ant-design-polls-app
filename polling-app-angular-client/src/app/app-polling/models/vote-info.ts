@@ -1,4 +1,4 @@
-export class VoteInfo {
+export interface VoteInfo {
     pollId: number;
     choiceId: number;
 }

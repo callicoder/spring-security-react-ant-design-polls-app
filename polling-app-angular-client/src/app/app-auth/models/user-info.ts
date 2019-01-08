@@ -1,10 +1,10 @@
-export class UserInfo {
-    id?: number;
+export interface UserInfo {
+    id: number;
     name: string;
     username: string;
-    email?: string;
-    password?: string;
-    joinedAt?: Date;
-    pollCount?: number;
-    voteCount?: number;
+    email: string;
+    password: string;
+    joinedAt: Date;
+    pollCount: number;
+    voteCount: number;
 }

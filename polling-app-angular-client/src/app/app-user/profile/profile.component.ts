@@ -18,7 +18,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   tabSet: TabsetComponent;
 
   username: string;
-  userInfo: UserInfo = new UserInfo();
+  userInfo: UserInfo = {} as UserInfo;
   private sub: Subscription;
 
   constructor(

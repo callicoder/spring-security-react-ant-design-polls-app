@@ -1,4 +1,4 @@
-export class ChoiceInfo {
+export interface ChoiceInfo {
     id: number;
     text: String;
     voteCount: number;

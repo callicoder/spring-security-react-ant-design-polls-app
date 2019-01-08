@@ -98,7 +98,7 @@ export class PollComponent implements OnInit {
       this.router.navigate(['/login']);
     }
 
-    let voteData = new VoteInfo();
+    let voteData = {} as VoteInfo;
     voteData.pollId = this.poll.id;
     voteData.choiceId = this.voteForm.get('choiceGroup').value;
 
