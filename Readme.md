@@ -43,7 +43,7 @@ I've written a complete tutorial series for this application on The CalliCoder B
 	mvn spring-boot:run
 	```
 
-	The server will start on port 5000. The spring boot app includes the front end build also, so you'll be able to access the complete application on `http://localhost:5000`.
+	The server will start on port 8080.
 
 	You can also package the application in the form of a `jar` file and then run it like so -
 
