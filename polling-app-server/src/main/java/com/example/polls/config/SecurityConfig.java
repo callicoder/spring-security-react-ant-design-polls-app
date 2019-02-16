@@ -92,11 +92,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         .permitAll()
                     .antMatchers(HttpMethod.GET, "/api/polls/**", "/api/users/**")
                         .permitAll()
+                    .antMatchers("/h2-console/**")
+                    .permitAll()
                     .anyRequest()
                         .authenticated();
 
         // Add our custom JWT security filter
         http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
-
+        // Allow H2-console
+        http.headers().frameOptions().sameOrigin();
     }
 }
