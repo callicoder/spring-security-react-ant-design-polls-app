@@ -1,10 +1,12 @@
 package com.example.polls.model;
 
 import com.example.polls.model.audit.DateAudit;
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.NaturalId;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
@@ -45,6 +47,11 @@ public class User extends DateAudit {
     @Size(max = 100)
     private String password;
 
+    private boolean isActive=false;
+
+    private String verificationKey;
+
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -52,7 +59,6 @@ public class User extends DateAudit {
     private Set<Role> roles = new HashSet<>();
 
     public User() {
-
     }
 
     public User(String name, String username, String email, String password) {
@@ -60,6 +66,7 @@ public class User extends DateAudit {
         this.username = username;
         this.email = email;
         this.password = password;
+        this.isActive = false;
     }
 
     public Long getId() {
@@ -108,5 +115,21 @@ public class User extends DateAudit {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
+    public String getVerificationKey() {
+        return verificationKey;
+    }
+
+    public void setVerificationKey(String verificationKey) {
+        this.verificationKey = verificationKey;
     }
 }

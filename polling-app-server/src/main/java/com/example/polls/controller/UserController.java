@@ -83,4 +83,5 @@ public class UserController {
         return pollService.getPollsVotedBy(username, currentUser, page, size);
     }
 
+
 }
