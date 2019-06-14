@@ -14,7 +14,7 @@ import { TabsetComponent } from 'ngx-bootstrap/tabs';
 })
 export class ProfileComponent implements OnInit, OnDestroy {
 
-  @ViewChild(TabsetComponent)
+  @ViewChild(TabsetComponent, { static: true })
   tabSet: TabsetComponent;
 
   username: string;

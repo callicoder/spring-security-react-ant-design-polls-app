@@ -1,39 +1,41 @@
 # PollingAppAngularClient
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.2.3.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.3.
 
-Installing bootstrap and ngx-bootstrap: yarn add bootstrap ngx-bootstrap
+Installing bootstrap and ngx-bootstrap: `ng add ngx-bootstrap`
 
 Import bootstrap css in src/styles.css:
 
-@import '~bootstrap/dist/css/bootstrap.min.css';
+`@import '~bootstrap/dist/css/bootstrap.min.css';`
 
-Installing open iconic: yarn add open-iconic
+Installing open iconic: `yarn add open-iconic`
 
 Import icon set in src/styles.css:
 
-@import '~open-iconic/font/css/open-iconic-bootstrap.min.css';
+`@import '~open-iconic/font/css/open-iconic-bootstrap.min.css';`
 
-Install ngx-toastr: yarn add ngx-toastr
+Install ngx-toastr: `yarn add ngx-toastr`
 
 Import ngx-toastr css in src/style/css:
 
-@import '~ngx-toastr/toastr.css';
+`@import '~ngx-toastr/toastr.css';`
+
+Install ng2-avatar: `yarn add ng2-avatar`
 
 Configure proxy to talk to backend server:
-1. create file proxy.conf.json in the app root directory
+1. create file `proxy.conf.json` in the app root directory
 2. add the following code:
-
+```
 {
   "/api": {
     "target": "http://localhost:5000",
     "secure": false
   }
 }
-
+```
 ...where target url is the url for the backend server
 
-3. update angular.json by adding "proxyConfig": "./proxy.conf.json" to the serve.options
+3. update `angular.json` by adding `"proxyConfig": "./proxy.conf.json"` to the `serve.options`
 
 ## Development server
 
