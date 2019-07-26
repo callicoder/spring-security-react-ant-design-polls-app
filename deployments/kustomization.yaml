@@ -1,4 +1,4 @@
-# This file should not be checked into Git. It's published only for demonstration purpose.
+# The secrets file should not be checked into Git. It's published only for demonstration purpose.
 secretGenerator:
 - name: mysql-root-pass
   literals:
