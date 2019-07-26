@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: polling-app-client
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: polling-app-client
+  template:
+    metadata:
+      labels:
+        name: polling-app-client
+    spec:
+      containers:
+      - name: polling-app-client
+        image: callicoder/polling-app-client:1.0.0
+        imagePullPolicy: IfNotPresent
+        ports:
+          - name: http
+            containerPort: 80
+        resources:
+          limits:
+            cpu: 0.2
+            memory: "10Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: polling-app-client
+spec:
+  type: NodePort
+  selector:
+    name: polling-app-client
+  ports:
+  - name: http
+    port: 80
+    targetPort: 80
