@@ -17,4 +17,5 @@ secretGenerator:
   - url=jdbc:mysql://polling-app-mysql:3306/polls?useSSL=false&serverTimezone=UTC&useLegacyDatetimeCode=false
 resources:
   - mysql-deployment.yaml
-  - polling-app-server.yaml  
+  - polling-app-server.yaml
+  - polling-app-client.yaml  
