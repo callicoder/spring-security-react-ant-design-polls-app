@@ -1,59 +1,58 @@
----
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: apps/v1           # API version
+kind: Deployment              # Type of kubernetes resource
 metadata:
-  name: polling-app-server
-  labels:
+  name: polling-app-server    # Name of the kubernetes resource
+  labels:                     # Labels that will be applied to this resource
     app: polling-app-server
 spec:
-  replicas: 1
+  replicas: 1                 # No. of replicas/pods to run in this deployment
   selector:
-    matchLabels:
+    matchLabels:              # The deployment applies to any pods mayching the specified labels
       app: polling-app-server
-  template:
+  template:                   # Template for creating the pods in this deployment
     metadata:
-      labels:
+      labels:                 # Labels that will be applied to each Pod in this deployment
         app: polling-app-server
-    spec:
+    spec:                     # Spec for the containers that will be run in the Pods
       containers:
       - name: polling-app-server
         image: callicoder/polling-app-server:1.0.0
         imagePullPolicy: IfNotPresent
         ports:
           - name: http
-            containerPort: 8080
+            containerPort: 8080 # The port that the container exposes
         resources:
           limits:
             cpu: 0.2
-            memory: "256Mi"
-        env:
-        - name: SPRING_DATASOURCE_USERNAME
-          valueFrom:
+            memory: "200Mi"
+        env:                  # Environment variables supplied to the Pod
+        - name: SPRING_DATASOURCE_USERNAME # Name of the environment variable
+          valueFrom:          # Get the value of environment variable from kubernetes secrets
             secretKeyRef:
-              name: mysql-user
+              name: mysql-user-pass
               key: username
         - name: SPRING_DATASOURCE_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: mysql-pass
+              name: mysql-user-pass
               key: password
         - name: SPRING_DATASOURCE_URL
           valueFrom:
             secretKeyRef:
-              name: mysql-url
+              name: mysql-db-url
               key: url
 ---
-apiVersion: v1
-kind: Service
-metadata:
-  name: polling-app-server
-  labels:
+apiVersion: v1                # API version
+kind: Service                 # Type of the kubernetes resource
+metadata:                     
+  name: polling-app-server    # Name of the kubernetes resource
+  labels:                     # Labels that will be applied to this resource
     app: polling-app-server
-spec:
-  type: NodePort
+spec:                         
+  type: NodePort              # The service will be exposed by opening a Port on each node and proxying it. 
   selector:
-    app: polling-app-server
-  ports:
+    app: polling-app-server   # The service exposes Pods with label `app=polling-app-server`
+  ports:                      # Forward incoming connections on port 8080 to the target port 8080
   - name: http
     port: 8080
     targetPort: 8080

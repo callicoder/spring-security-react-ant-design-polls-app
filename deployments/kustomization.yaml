@@ -3,17 +3,13 @@ secretGenerator:
 - name: mysql-root-pass
   literals:
   - password=R00t
-- name: mysql-user
+- name: mysql-user-pass
   literals:
-  - username=callicoder 
-- name: mysql-pass
+  - username=callicoder
+  - password=c@ll1c0d3r 
+- name: mysql-db-url
   literals:
-  - password=c@ll1c0d3r
-- name: mysql-db
-  literals:
-  - database=polls      
-- name: mysql-url
-  literals:
+  - database=polls
   - url=jdbc:mysql://polling-app-mysql:3306/polls?useSSL=false&serverTimezone=UTC&useLegacyDatetimeCode=false
 resources:
   - mysql-deployment.yaml
