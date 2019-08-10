@@ -5,7 +5,7 @@ metadata:
   labels:
     type: local
 spec:
-  storageClassName: standard      # The class of storage. A PV Claim requesting the same storageClass can be bound to this volume. 
+  storageClassName: standard      # Storage class. A PV Claim requesting the same storageClass can be bound to this volume. 
   capacity:
     storage: 250Mi
   accessModes:
