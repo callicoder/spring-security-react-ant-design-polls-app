@@ -16,7 +16,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" routerLink="/poll/new" routerLinkActive="active">
+                <a class="nav-link" routerLink="/polls/new" routerLinkActive="active">
                     <span class="oi oi-list-rich" aria-hidden="true" tooltip="New Poll" placement="bottom"></span>
                 </a>
             </li>
@@ -28,15 +28,15 @@
                     <li class="pl-3 font-weight-bold" role="menuitem">{{userInfo.name}}</li>
                     <li class="pl-3" role="menuitem">@{{userInfo.username}}</li>
                     <li role="menuitem"><div class="dropdown-divider"></div></li>
-                    <li role="menuitem"><a class="dropdown-item" [routerLink]="['/users', userInfo.username]">Profile</a></li>
+                    <li role="menuitem"><a class="dropdown-item" [routerLink]="['user/profile', userInfo.username]">Profile</a></li>
                     <li role="menuitem"><button class="btn btn-link dropdown-item" (click)="logout()">Logout</button></li>
                 </ul>
             </li>
         </ul>
         <ng-template #templateForNotLoggedIn>
             <div class="ml-auto">
-                <button type="button" class="btn btn-primary" routerLink="login" routerLinkActive="active">Login</button>
-                <button type="button" class="btn btn-primary" routerLink="signup" routerLinkActive="active">Signup</button>
+                <button type="button" class="btn btn-primary" routerLink="user/login" routerLinkActive="active">Login</button>
+                <button type="button" class="btn btn-primary" routerLink="user/signup" routerLinkActive="active">Signup</button>
             </div>
         </ng-template>
     </div>

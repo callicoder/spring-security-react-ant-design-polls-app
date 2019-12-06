@@ -5,6 +5,7 @@ import { AvatarModule } from 'ngx-avatar';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 
 import { AppBootstrapModule } from './../app-bootstrap/app-bootstrap.module';
+import { AppPollingRoutingModule } from './app-polling-routing.module';
 
 import { PollComponent } from './poll/poll.component';
 import { PollListComponent } from './poll-list/poll-list.component';
@@ -17,7 +18,8 @@ import { PollNewComponent } from './poll-new/poll-new.component';
     AvatarModule,
     FormsModule, 
     ReactiveFormsModule,
-    AppBootstrapModule
+    AppBootstrapModule,
+    AppPollingRoutingModule
   ],
   declarations: [PollComponent, PollListComponent, PollNewComponent],
   exports: [PollListComponent]

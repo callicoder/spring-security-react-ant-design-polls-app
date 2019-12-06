@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { AvatarModule } from 'ngx-avatar';
 
 import { AppBootstrapModule } from './../app-bootstrap/app-bootstrap.module';
+import { AppUserRoutingModule } from './app-user-routing.module';
 import { AppPollingModule } from '../app-polling/app-polling.module';
 
 import { LoginComponent } from './login/login.component';
@@ -15,10 +16,11 @@ import { SignupComponent } from './signup/signup.component';
   imports: [
     CommonModule,
     RouterModule,
-    FormsModule, 
+    FormsModule,
     ReactiveFormsModule,
     AvatarModule,
     AppBootstrapModule,
+    AppUserRoutingModule,
     AppPollingModule
   ],
   declarations: [LoginComponent, ProfileComponent, SignupComponent]

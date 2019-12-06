@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from "@angular/router";
-import { ToastrService } from "ngx-toastr";
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
-import { AuthService } from "./app-auth/services/auth.service";
-import { UserInfo } from "./app-auth/models/user-info";
+import { AuthService } from './app-auth/services/auth.service';
+import { UserInfo } from './app-auth/models/user-info';
 
 @Component({
-  selector: "app-root",
-  templateUrl: "./app.component.html",
+  selector: 'app-root',
+  templateUrl: './app.component.html',
   styles: []
 })
 export class AppComponent implements OnInit {
@@ -32,8 +32,8 @@ export class AppComponent implements OnInit {
 
   logout() {
     this.authService.logout();
-    this.toastr.success("You're successfully logged out.", "Polling App");
-    this.router.navigate(["login"]);
+    this.toastr.success('You were successfully logged out.', 'Polling App');
+    this.router.navigate(['user/login']);
   }
 
   get userInfo() {
@@ -43,5 +43,5 @@ export class AppComponent implements OnInit {
     }
     return currentUser;
   }
-  
+
 }
