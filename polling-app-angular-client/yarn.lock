@@ -4280,6 +4280,11 @@ is-regex@^1.0.4:
   dependencies:
     has "^1.0.1"
 
+is-retina@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/is-retina/-/is-retina-1.0.3.tgz#d7401b286bea2ae37f62477588de504d0b8647e3"
+  integrity sha1-10AbKGvqKuN/Ykd1iN5QTQuGR+M=
+
 is-stream@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/is-stream/-/is-stream-1.1.0.tgz#12d4a3dd4e68e0b79ceb8dbc84173ae80d91ca44"
@@ -5178,10 +5183,14 @@ neo-async@^2.5.0, neo-async@^2.6.0, neo-async@^2.6.1:
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.1.tgz#ac27ada66167fa8849a6addd837f6b189ad2081c"
   integrity sha512-iyam8fBuCUpWeKPGpaNMetEocMt364qkCsfL9JuhjXX6dRnguRVOfk2GZaDpPjcOKiiXCPINZC1GczQ7iTq3Zw==
 
-ng2-avatar@^2.3.1:
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/ng2-avatar/-/ng2-avatar-2.3.1.tgz#ced8002b0bf75bdb633af87aec0441cea6921565"
-  integrity sha512-WZ3PO0KhEr66291uVB3uQwPn4mKaXKESE7vfOgb3HHxonZk7vvAeU7NLn2yhgxRZkYqplRplgdtX/uKairyRlg==
+ngx-avatar@^3.7.0:
+  version "3.7.0"
+  resolved "https://registry.yarnpkg.com/ngx-avatar/-/ngx-avatar-3.7.0.tgz#43857ad017af42ed0ba26d0dafc45948285a8af7"
+  integrity sha512-M/fBymbjCN/iyEQ6hJc1N5JsYJEM7riIKN7KsTjLN83MzhKzffaz0BDea1iqVQQSqwYObF5HWJKm1sBLwuigHQ==
+  dependencies:
+    is-retina "^1.0.3"
+    ts-md5 "^1.2.4"
+    tslib "^1.9.0"
 
 ngx-bootstrap@^4.3.0:
   version "4.3.0"
@@ -7465,6 +7474,11 @@ trim-right@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/trim-right/-/trim-right-1.0.1.tgz#cb2e1203067e0c8de1f614094b9fe45704ea6003"
   integrity sha1-yy4SAwZ+DI3h9hQJS5/kVwTqYAM=
+
+ts-md5@^1.2.4:
+  version "1.2.7"
+  resolved "https://registry.yarnpkg.com/ts-md5/-/ts-md5-1.2.7.tgz#b76471fc2fd38f0502441f6c3b9494ed04537401"
+  integrity sha512-emODogvKGWi1KO1l9c6YxLMBn6CEH3VrH5mVPIyOtxBG52BvV4jP3GWz6bOZCz61nLgBc3ffQYE4+EHfCD+V7w==
 
 ts-node@~7.0.0:
   version "7.0.1"

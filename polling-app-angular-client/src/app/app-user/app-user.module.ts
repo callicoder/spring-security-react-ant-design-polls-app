@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
-import { AvatarModule } from 'ng2-avatar';
+import { AvatarModule } from 'ngx-avatar';
 
 import { AppBootstrapModule } from './../app-bootstrap/app-bootstrap.module';
 import { AppPollingModule } from '../app-polling/app-polling.module';

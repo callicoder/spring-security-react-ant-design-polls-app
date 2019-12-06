@@ -4,7 +4,7 @@
             <div class="card-header">
                 <a [routerLink]="['/users', poll.createdBy.username]" class="creator-link">
                 <span class="poll-creator-avatar">
-                <avatar class="card-img-top" [name]="poll.createdBy.username" [displayType]="'circle'" size="50"></avatar>
+                <ngx-avatar class="card-img-top" [name]="poll.createdBy.username" size="50"></ngx-avatar>
                 </span>
                 <span class="poll-creator-name">{{ poll.createdBy.name }}</span>
                 <span class="poll-creator-username">@{{ poll.createdBy.username }}</span>
