@@ -33,7 +33,7 @@ export class AppComponent implements OnInit {
   logout() {
     this.authService.logout();
     this.toastr.success('You were successfully logged out.', 'Polling App');
-    this.router.navigate(['user/login']);
+    this.router.navigate(['/user/login']);
   }
 
   get userInfo() {

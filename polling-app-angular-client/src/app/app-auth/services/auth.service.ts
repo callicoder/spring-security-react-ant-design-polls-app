@@ -22,13 +22,13 @@ export class AuthService {
     return this.http.get<any>(`/api/user/checkEmailAvailability?email=${email}`);
   }
 
-  register(user : UserInfo) {
+  register(user: UserInfo) {
     return this.http.post('/api/auth/signup', user);
   }
 
   login(username: string, password: string) {
-    return this.http.post<any>('/api/auth/signin', {"usernameOrEmail": username, "password": password})
-        // this is just the HTTP call, 
+    return this.http.post<any>('/api/auth/signin', {usernameOrEmail: username, password})
+        // this is just the HTTP call,
         // we still need to handle the reception of the token
         .pipe(tap(res => this.setSession(res)), // handles the auth result
         shareReplay()); // prevents the receiver of this Observable from accidentally triggering multiple POST requests due to multiple subscriptions.

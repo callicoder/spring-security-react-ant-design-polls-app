@@ -29,11 +29,11 @@ export class PollNewComponent implements OnInit {
   ngOnInit() {
     this.pollForm = this.formBuilder.group({
       question: [
-        '', 
+        '',
         [Validators.required, Validators.maxLength(140)]
       ],
       choices: this.formBuilder.array([
-        this.formBuilder.group({text: ''}), 
+        this.formBuilder.group({text: ''}),
         this.formBuilder.group({text: ''})
       ]),
       days: [null],
@@ -59,18 +59,18 @@ export class PollNewComponent implements OnInit {
           this.router.navigate(['/']);
         },
         error => {
-          this.toastr.error(error.message || "Sorry! Something went wrong. Please try again!", "Polling App");
+          this.toastr.error(error.message || 'Sorry! Something went wrong. Please try again!', 'Polling App');
         }
       );
   }
 
   addChoice() {
-    let choices = this.f.choices as FormArray;
+    const choices = this.f.choices as FormArray;
     choices.push(this.formBuilder.group({text: ''}));
   }
 
   removeChoice(choiceNumber) {
-    let choices = this.f.choices as FormArray;
+    const choices = this.f.choices as FormArray;
     choices.removeAt(choiceNumber);
   }
 }

@@ -4,10 +4,10 @@
         <form class="form" [formGroup]="pollForm" (ngSubmit)="onFormSubmit()">
             <div class="form-group">
                 <textarea formControlName="question" class="form-control" row="3" cols="6" required placeholder="Enter your question"
-                  [ngClass]="{ 'is-invalid': f.question.touched && f.question.errors }"></textarea>
-                <div *ngIf="f.question.touched && f.question.errors" class="invalid-feedback">
-                  <div *ngIf="f.question.errors.required">Please enter your question!</div>
-                  <div *ngIf="f.question.errors.maxlength">Question is too long (Maximum 140 characters allowed.)</div>
+                  [class.is-invalid]="f.question.touched && f.question.invalid"></textarea>
+                <div *ngIf="f.question.touched && f.question.invalid">
+                  <small class="text-danger" *ngIf="f.question.errors?.required">Please enter your question!</small>
+                  <small class="text-danger" *ngIf="f.question.errors?.maxlength">Question is too long (Maximum 140 characters allowed.)</small>
                 </div>
             </div>
             <div formArrayName="choices" *ngFor="let choice of f.choices.controls; let i = index;">
@@ -43,7 +43,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <button class="btn btn-primary btn-block" type="submit">Create Poll</button>
+                <button class="btn btn-primary btn-block" type="submit" [disabled]="pollForm.invalid">Create Poll</button>
             </div>
         </form>
     </div>    

@@ -22,13 +22,13 @@ import { PollInfo } from './../models/poll-info';
   styles: [`
   .polls-container {
     max-width: 600px;
-    margin: 0 auto;    
-    margin-top: 20px; 
+    margin: 0 auto;
+    margin-top: 20px;
 }
   .no-polls-found {
     font-size: 20px;
     text-align: center;
-    padding: 20px;    
+    padding: 20px;
   }
   `]
 })
@@ -40,7 +40,7 @@ export class PollListComponent implements OnInit, OnChanges {
 
   constructor(
     private pollService: PollService,
-    private toastr: ToastrService 
+    private toastr: ToastrService
   ) { }
 
   ngOnInit() {
@@ -70,7 +70,7 @@ export class PollListComponent implements OnInit, OnChanges {
         this.polls = res.content;
       },
       error => {
-        this.toastr.error(error, "Polling App");
+        this.toastr.error(error, 'Polling App');
       });
   }
 
@@ -81,7 +81,7 @@ export class PollListComponent implements OnInit, OnChanges {
         this.polls = res.content;
       },
       error => {
-        this.toastr.error(error, "Polling App");
+        this.toastr.error(error, 'Polling App');
       });
   }
 
@@ -92,7 +92,7 @@ export class PollListComponent implements OnInit, OnChanges {
         this.polls = res.content;
       },
       error => {
-        this.toastr.error(error, "Polling App");
+        this.toastr.error(error, 'Polling App');
       });
   }
 

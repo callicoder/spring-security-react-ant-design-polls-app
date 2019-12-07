@@ -19,10 +19,10 @@ export class PollComponent implements OnInit {
 
   @Input() public poll: PollInfo;
   currentVote: number;
-  voteForm: FormGroup; 
+  voteForm: FormGroup;
 
   constructor(
-    private authService : AuthService,
+    private authService: AuthService,
     private toastr: ToastrService,
     private router: Router,
     private formBuilder: FormBuilder,
@@ -32,7 +32,7 @@ export class PollComponent implements OnInit {
   ngOnInit() {
     this.voteForm = this.formBuilder.group({
       choiceGroup: new FormControl()
-    })
+    });
     this.currentVote = this.poll.selectedChoice;
   }
 
@@ -41,22 +41,22 @@ export class PollComponent implements OnInit {
   }
 
   calculatePercentage = (totalVotes, choice) => {
-    if(totalVotes === 0) {
+    if (totalVotes === 0) {
         return 0;
     }
-    let percentVote = (choice.voteCount*100)/totalVotes;
+    const percentVote = (choice.voteCount * 100) / totalVotes;
     return Math.round(percentVote * 100) / 100;
-  };
+  }
 
   isWinner(poll: PollInfo, choice: ChoiceInfo) {
-    let winningChoice: any = poll.expired ? this.getWinningChoice(poll.choices) : null;
+    const winningChoice: any = poll.expired ? this.getWinningChoice(poll.choices) : null;
 
     return winningChoice && choice.id === winningChoice.id;
-  };
+  }
 
   getWinningChoice(choices: ChoiceInfo[]) {
-    return choices.reduce((prevChoice, currentChoice) => 
-            currentChoice.voteCount > prevChoice.voteCount ? currentChoice : prevChoice, 
+    return choices.reduce((prevChoice, currentChoice) =>
+            currentChoice.voteCount > prevChoice.voteCount ? currentChoice : prevChoice,
             {voteCount: -Infinity}
         );
   }
@@ -65,40 +65,40 @@ export class PollComponent implements OnInit {
     const expirationTime = new Date(poll.expirationDateTime).getTime();
     const currentTime = new Date().getTime();
 
-    var difference_ms = expirationTime - currentTime;
-    var seconds = Math.floor( (difference_ms/1000) % 60 );
-    var minutes = Math.floor( (difference_ms/1000/60) % 60 );
-    var hours = Math.floor( (difference_ms/(1000*60*60)) % 24 );
-    var days = Math.floor( difference_ms/(1000*60*60*24) );
+    let difference_ms = expirationTime - currentTime;
+    let seconds = Math.floor( (difference_ms / 1000) % 60 );
+    let minutes = Math.floor( (difference_ms / 1000 / 60) % 60 );
+    let hours = Math.floor( (difference_ms / (1000 * 60 * 60)) % 24 );
+    let days = Math.floor( difference_ms / (1000 * 60 * 60 * 24) );
 
     let timeRemaining;
 
-    if(days > 0) {
-        timeRemaining = days + " days left";
+    if (days > 0) {
+        timeRemaining = days + ' days left';
     } else if (hours > 0) {
-        timeRemaining = hours + " hours left";
+        timeRemaining = hours + ' hours left';
     } else if (minutes > 0) {
-        timeRemaining = minutes + " minutes left";
-    } else if(seconds > 0) {
-        timeRemaining = seconds + " seconds left";
+        timeRemaining = minutes + ' minutes left';
+    } else if (seconds > 0) {
+        timeRemaining = seconds + ' seconds left';
     } else {
-        timeRemaining = "less than a second left";
+        timeRemaining = 'less than a second left';
     }
-    
+
     return timeRemaining;
   }
 
-  handleVoteChange(poll : PollInfo, choiceId: number) {
+  handleVoteChange(poll: PollInfo, choiceId: number) {
     this.currentVote = choiceId;
   }
 
   handleVoteSubmit() {
     if (!this.isLoggedIn()) {
-      this.toastr.info("Please login to vote.","Polling App");
-      this.router.navigate(['/login']);
+      this.toastr.info('Please login to vote.','Polling App');
+      this.router.navigate(['/user/login']);
     }
 
-    let voteData = {} as VoteInfo;
+    const voteData = {} as VoteInfo;
     voteData.pollId = this.poll.id;
     voteData.choiceId = this.voteForm.get('choiceGroup').value;
 
@@ -109,12 +109,12 @@ export class PollComponent implements OnInit {
                 this.poll = data;
             },
             error => {
-              if(error.status === 401) {
+              if (error.status === 401) {
                 this.authService.logout();
-                this.toastr.error("You have been logged out. Please login to vote");
-                this.router.navigate(['/login']);
+                this.toastr.error('You have been logged out. Please login to vote');
+                this.router.navigate(['/user/login']);
               } else {
-                this.toastr.error(error || "Sorry! Something went wrong. Please try again!");
+                this.toastr.error(error || 'Sorry! Something went wrong. Please try again!');
               }
             });
   }
