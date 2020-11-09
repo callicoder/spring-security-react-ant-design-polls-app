@@ -1,4 +1,4 @@
-# The secrets file should not be checked into Git. It's published only for demonstration purpose.
+# The url file should not be checked into Git. It's published only for demonstration purpose.
 secretGenerator:
 - name: mysql-root-pass
   literals:
@@ -6,7 +6,7 @@ secretGenerator:
 - name: mysql-user-pass
   literals:
   - username=callicoder
-  - password=c@ll1c0d3r 
+  - password=c@ll1c0d3r
 - name: mysql-db-url
   literals:
   - database=polls
@@ -14,4 +14,4 @@ secretGenerator:
 resources:
   - mysql-deployment.yaml
   - polling-app-server.yaml
-  - polling-app-client.yaml  
+  - polling-app-client.yaml
