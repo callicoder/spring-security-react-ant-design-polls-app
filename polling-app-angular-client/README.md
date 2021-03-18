@@ -1,6 +1,6 @@
 # PollingAppAngularClient
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.2.3.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.5.
 
 Installing bootstrap and ngx-bootstrap: yarn add bootstrap ngx-bootstrap
 
@@ -21,14 +21,15 @@ Import ngx-toastr css in src/style/css:
 @import '~ngx-toastr/toastr.css';
 
 Configure proxy to talk to backend server:
+
 1. create file proxy.conf.json in the app root directory
 2. add the following code:
 
 {
-  "/api": {
-    "target": "http://localhost:5000",
-    "secure": false
-  }
+"/api": {
+"target": "http://localhost:5000",
+"secure": false
+}
 }
 
 ...where target url is the url for the backend server
@@ -57,4 +58,4 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 
 ## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.

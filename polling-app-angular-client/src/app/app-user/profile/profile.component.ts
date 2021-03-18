@@ -10,11 +10,10 @@ import { TabsetComponent } from 'ngx-bootstrap/tabs';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit, OnDestroy {
-
-  @ViewChild(TabsetComponent)
+  @ViewChild(TabsetComponent, { static: true })
   tabSet: TabsetComponent;
 
   username: string;
@@ -24,10 +23,10 @@ export class ProfileComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private authService: AuthService
-  ) { }
+  ) {}
 
   ngOnInit() {
-    this.sub = this.route.params.subscribe(params => {
+    this.sub = this.route.params.subscribe((params) => {
       this.username = params['username'];
       this.loadUserProfile(this.username);
     });
@@ -35,18 +34,20 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   loadUserProfile(username: string) {
     this.tabSet.tabs[0].active = true;
-    this.authService.getUserProfile(username)
-    .pipe(first())
-      .subscribe( res => {
-        this.userInfo = res;
-      },
-        error => {
+    this.authService
+      .getUserProfile(username)
+      .pipe(first())
+      .subscribe(
+        (res) => {
+          this.userInfo = res;
+        },
+        (error) => {
           console.log(error);
-        });
+        }
+      );
   }
 
   ngOnDestroy() {
     this.sub.unsubscribe();
   }
-
 }

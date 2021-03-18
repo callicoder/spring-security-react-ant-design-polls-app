@@ -8,13 +8,12 @@ import { first } from 'rxjs/operators';
 @Component({
   selector: 'app-poll-new',
   templateUrl: './poll-new.component.html',
-  styleUrls: ['./poll-new.component.css']
+  styleUrls: ['./poll-new.component.scss'],
 })
 export class PollNewComponent implements OnInit {
-
   pollForm: FormGroup;
   // choices: [{ text: ''}, {text: ''}];
-  pollLength: { days: 1, hours: 0};
+  pollLength: { days: 1; hours: 0 };
   days = Array.from(Array(8).keys());
   hours = Array.from(Array(24).keys());
   defaultDayOption = '1';
@@ -24,27 +23,30 @@ export class PollNewComponent implements OnInit {
     private router: Router,
     private toastr: ToastrService,
     private pollService: PollService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.pollForm = this.formBuilder.group({
-      question: [
-        '', 
-        [Validators.required, Validators.maxLength(140)]
-      ],
+      question: ['', [Validators.required, Validators.maxLength(140)]],
       choices: this.formBuilder.array([
-        this.formBuilder.group({text: ''}), 
-        this.formBuilder.group({text: ''})
+        this.formBuilder.group({ text: '' }),
+        this.formBuilder.group({ text: '' }),
       ]),
       days: [null],
-      hours: [null]
+      hours: [null],
     });
-    this.f.days.setValue(1, {onlySelf: true});
-    this.f.hours.setValue(0, {onlySelf: true});
+    this.f.days.setValue(1, { onlySelf: true });
+    this.f.hours.setValue(0, { onlySelf: true });
   }
 
   // convenience getter for easy access to form fields
-  get f() { return this.pollForm.controls; }
+  get f() {
+    return this.pollForm.controls;
+  }
+
+  get choices() {
+    return this.pollForm.get('choices') as FormArray;
+  }
 
   onFormSubmit() {
     // stop here if form is invalid
@@ -52,21 +54,25 @@ export class PollNewComponent implements OnInit {
       return;
     }
 
-    this.pollService.createPoll(this.pollForm.value)
+    this.pollService
+      .createPoll(this.pollForm.value)
       .pipe(first())
       .subscribe(
-        data => {
+        (data) => {
           this.router.navigate(['/']);
         },
-        error => {
-          this.toastr.error(error.message || "Sorry! Something went wrong. Please try again!", "Polling App");
+        (error) => {
+          this.toastr.error(
+            error.message || 'Sorry! Something went wrong. Please try again!',
+            'Polling App'
+          );
         }
       );
   }
 
   addChoice() {
     let choices = this.f.choices as FormArray;
-    choices.push(this.formBuilder.group({text: ''}));
+    choices.push(this.formBuilder.group({ text: '' }));
   }
 
   removeChoice(choiceNumber) {

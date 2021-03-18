@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { AvatarModule } from 'ng2-avatar';
-import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
+import { AvatarModule } from 'ngx-avatar';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppBootstrapModule } from './../app-bootstrap/app-bootstrap.module';
 
@@ -15,11 +15,11 @@ import { PollNewComponent } from './poll-new/poll-new.component';
     CommonModule,
     RouterModule,
     AvatarModule,
-    FormsModule, 
+    FormsModule,
     ReactiveFormsModule,
-    AppBootstrapModule
+    AppBootstrapModule,
   ],
   declarations: [PollComponent, PollListComponent, PollNewComponent],
-  exports: [PollListComponent]
+  exports: [PollListComponent],
 })
-export class AppPollingModule { }
+export class AppPollingModule {}

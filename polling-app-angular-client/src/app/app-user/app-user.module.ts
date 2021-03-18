@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
-import { AvatarModule } from 'ng2-avatar';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AvatarModule } from 'ngx-avatar';
 
 import { AppBootstrapModule } from './../app-bootstrap/app-bootstrap.module';
 import { AppPollingModule } from '../app-polling/app-polling.module';
@@ -15,12 +15,12 @@ import { SignupComponent } from './signup/signup.component';
   imports: [
     CommonModule,
     RouterModule,
-    FormsModule, 
+    FormsModule,
     ReactiveFormsModule,
     AvatarModule,
     AppBootstrapModule,
-    AppPollingModule
+    AppPollingModule,
   ],
-  declarations: [LoginComponent, ProfileComponent, SignupComponent]
+  declarations: [LoginComponent, ProfileComponent, SignupComponent],
 })
-export class AppUserModule { }
+export class AppUserModule {}
