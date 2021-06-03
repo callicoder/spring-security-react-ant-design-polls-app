@@ -47,7 +47,8 @@
             "aot": true,
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": ["src/styles.scss"],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": ["ngx-bootstrap-icons"]
           },
           "configurations": {
             "production": {

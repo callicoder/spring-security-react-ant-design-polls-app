@@ -1133,6 +1133,13 @@
   resolved "https://registry.yarnpkg.com/@discoveryjs/json-ext/-/json-ext-0.5.2.tgz#8f03a22a04de437254e8ce8cc84ba39689288752"
   integrity sha512-HyYEUDeIj5rRQU2Hk5HTB2uHsbRQpF70nvMhVzi+VJR0X+xNEhjPui4/kBf3VeH/wqD28PT4sVOm8qqLjBrSZg==
 
+"@full-fledged/alerts@^11.0.2":
+  version "11.0.2"
+  resolved "https://registry.yarnpkg.com/@full-fledged/alerts/-/alerts-11.0.2.tgz#b16da7958c72f188549d694da17b5952cbc22412"
+  integrity sha512-IjSihuGsA5hsZIBu1Kz5t/oXHfgz6NW+5R3rXDT4mUyrH0ggpQkW6Mhmkmuf/m6WmsZPJNAbL7915x9tBmOwvA==
+  dependencies:
+    tslib "^2.0.0"
+
 "@istanbuljs/schema@^0.1.2":
   version "0.1.3"
   resolved "https://registry.yarnpkg.com/@istanbuljs/schema/-/schema-0.1.3.tgz#e45e384e4b8ec16bce2fd903af78450f6bf7ec98"
@@ -1148,6 +1155,27 @@
     loader-utils "^2.0.0"
     merge-source-map "^1.1.0"
     schema-utils "^2.7.0"
+
+"@ngrx/effects@^11.1.1":
+  version "11.1.1"
+  resolved "https://registry.yarnpkg.com/@ngrx/effects/-/effects-11.1.1.tgz#82abd97df8c1cdf1d9bd0bf720289591230d260c"
+  integrity sha512-KLfGSjlmlPUMlMEQkdD6tnJCs/dLSBJC6hZhCnobpDrBR9YMpoDDjM1t0Veg+Z50dL6AGO/T4dllRjd3BJuWiw==
+  dependencies:
+    tslib "^2.0.0"
+
+"@ngrx/store-devtools@^11.1.0":
+  version "11.1.0"
+  resolved "https://registry.yarnpkg.com/@ngrx/store-devtools/-/store-devtools-11.1.0.tgz#7b923979d9ddacf8af7bb69545f83ceaee7f44c6"
+  integrity sha512-OLL1zOs07fdrHtd/92PyEu7l/0/F3m1tfHqiNYSUPeLs7zrq5xDVZmhv05zaUhSw9E/F9m0a+P0tj+Qlk1FvBA==
+  dependencies:
+    tslib "^2.0.0"
+
+"@ngrx/store@^11.1.0":
+  version "11.1.0"
+  resolved "https://registry.yarnpkg.com/@ngrx/store/-/store-11.1.0.tgz#5cf2792022052bdc84111e9eaa67cd2fc32d2f11"
+  integrity sha512-mAnaZuZU1Y82VlJT/58zYS26y1sTrdtWyh6es+D57LOhv8iOI6mkv3ehlVNzaFyyc/XQehUMnJXTxItXJvCghg==
+  dependencies:
+    tslib "^2.0.0"
 
 "@ngtools/webpack@11.2.5":
   version "11.2.5"
@@ -5756,17 +5784,17 @@ ngx-avatar@^4.0.0:
     is-retina "^1.0.3"
     ts-md5 "^1.2.4"
 
+ngx-bootstrap-icons@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/ngx-bootstrap-icons/-/ngx-bootstrap-icons-1.4.0.tgz#9e0249201b98e90118d01dc05d2872aa291ff0c9"
+  integrity sha512-QiYtysxPai4dozjuYdphthuYAIvWdJopID1TV36dSmp5TSqKPUNgUGFiH+QRe+5uIzs9ac5JrlcnFjzYhLAneg==
+  dependencies:
+    tslib "^2.0.0"
+
 ngx-bootstrap@6.2.0:
   version "6.2.0"
   resolved "https://registry.yarnpkg.com/ngx-bootstrap/-/ngx-bootstrap-6.2.0.tgz#678b274dabfda31411eb1234c981d1967750d890"
   integrity sha512-5WKHo6/ltkenw4UyXZwED8rODCgp2RGbWurzYzZsF/gH1JO5SN7TJ+AL6kXYk6XM42sDA2WhN9Db+ZPNjiyHnA==
-
-ngx-toastr@^13.2.1:
-  version "13.2.1"
-  resolved "https://registry.yarnpkg.com/ngx-toastr/-/ngx-toastr-13.2.1.tgz#531bc7da6a524a861e0409bd2749878b3b3f8a3f"
-  integrity sha512-UAzp7/xWK9IXA2LsOmhpaaIGCqscvJokoQpBNpAMrjEkDeSlFf8PWQAuQY795KW0mJb3qF9UG/s23nsXfMYKmg==
-  dependencies:
-    tslib "^2.0.0"
 
 nice-try@^1.0.4:
   version "1.0.5"
@@ -6046,10 +6074,6 @@ onetime@^5.1.0:
   integrity sha512-kbpaSSGJTWdAY5KPVeMOKXSrPtr8C8C7wodJbcsd51jRnmD+GZu8Y0VoU6Dm5Z4vWr0Ig/1NKuWRKf7j5aaYSg==
   dependencies:
     mimic-fn "^2.1.0"
-
-open-iconic@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/open-iconic/-/open-iconic-1.1.1.tgz#9dcfc8c7cd3c61cdb4a236b1a347894c97adc0c6"
 
 open@7.4.0:
   version "7.4.0"

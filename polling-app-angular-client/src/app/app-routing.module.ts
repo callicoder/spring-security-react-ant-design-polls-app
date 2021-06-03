@@ -1,28 +1,29 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
-import { PollListComponent } from './app-polling/poll-list/poll-list.component';
-import { PollNewComponent } from './app-polling/poll-new/poll-new.component';
-import { LoginComponent } from './app-user/login/login.component';
-import { SignupComponent } from './app-user/signup/signup.component';
-import { ProfileComponent } from './app-user/profile/profile.component';
+import { PageNotFoundComponentComponent } from './core/components/page-not-found/page-not-found-component.component';
 
 const routes: Routes = [
   {
     path: '',
-    children: [
-      { path: '', redirectTo: '/polls', pathMatch: 'full' },
-      { path: 'polls', component: PollListComponent },
-      { path: 'poll/new', component: PollNewComponent },
-      { path: 'login', component: LoginComponent },
-      { path: 'signup', component: SignupComponent },
-      { path: 'users/:username', component: ProfileComponent }
-    ]
-  }
+    loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
+  },
+  {
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
+  },
+  {
+    path: 'poll',
+    loadChildren: () => import('./poll/poll.module').then((m) => m.PollModule),
+  },
+  {
+    path: 'users',
+    loadChildren: () => import('./user/user.module').then((m) => m.UserModule),
+  },
+  { path: '**', component: PageNotFoundComponentComponent },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
-  exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

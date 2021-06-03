@@ -1,0 +1,23 @@
+<div class="profile">
+  <div class="user-profile" *ngIf="user$ | async">
+    <app-user-info [user]="user$ | async"></app-user-info>
+    <div>
+      <tabset class="poll-tab-group">
+        <tab heading="{{ (user$ | async).pollCount }} Polls">
+          <div>
+            <app-user-poll-list
+              [username]="(user$ | async).username"
+            ></app-user-poll-list>
+          </div>
+        </tab>
+        <tab heading="{{ (user$ | async).voteCount }} Votes">
+          <div>
+            <app-user-vote-list
+              [username]="(user$ | async).username"
+            ></app-user-vote-list>
+          </div>
+        </tab>
+      </tabset>
+    </div>
+  </div>
+</div>

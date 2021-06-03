@@ -1,0 +1,102 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" href="#">
+    <i-bs name="ui-radios" width="2rem" height="2rem"></i-bs>
+    Polling App
+  </a>
+  <button
+    (click)="isCollapsed = !isCollapsed"
+    class="navbar-toggler collapsed"
+    type="button"
+    data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div
+    [collapse]="isCollapsed"
+    class="collapse navbar-collapse"
+    id="navbarSupportedContent"
+  >
+    <ul *ngIf="isLoggedIn$ | async" class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/']" routerLinkActive="active">
+          <i-bs
+            name="house"
+            aria-hidden="true"
+            tooltip="Home"
+            placement="bottom"
+            width="1.5rem"
+            height="1.5rem"
+          ></i-bs>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/poll" routerLinkActive="active">
+          <i-bs
+            name="ui-radios"
+            aria-hidden="true"
+            tooltip="New Poll"
+            placement="bottom"
+            width="1.5rem"
+            height="1.5rem"
+          ></i-bs>
+        </a>
+      </li>
+      <li class="nav-item dropdown" dropdown>
+        <a
+          class="nav-link dropdown-toggle"
+          dropdownToggle
+          role="button"
+          (click)="(false)"
+        >
+          <i-bs
+            name="person"
+            aria-hidden="true"
+            width="1.5rem"
+            height="1.5rem"
+          ></i-bs>
+        </a>
+        <ul *dropdownMenu class="dropdown-menu dropdown-menu-right">
+          <li class="pl-3 font-weight-bold" role="menuitem">
+            {{ (user$ | async).name }}
+          </li>
+          <li class="pl-3" role="menuitem">@{{ (user$ | async).username }}</li>
+          <li role="menuitem"><div class="dropdown-divider"></div></li>
+          <li role="menuitem">
+            <a
+              class="dropdown-item"
+              [routerLink]="['/users', (user$ | async).username]"
+              >Profile</a
+            >
+          </li>
+          <li role="menuitem">
+            <button class="btn btn-link dropdown-item" (click)="logout()">
+              Logout
+            </button>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <div *ngIf="!(isLoggedIn$ | async)" class="ml-auto">
+      <button
+        type="button"
+        class="btn btn-primary"
+        [routerLink]="['/login']"
+        routerLinkActive="active"
+      >
+        Login
+      </button>
+      <button
+        type="button"
+        class="btn btn-primary"
+        [routerLink]="['/signup']"
+        routerLinkActive="active"
+      >
+        Signup
+      </button>
+    </div>
+  </div>
+</nav>

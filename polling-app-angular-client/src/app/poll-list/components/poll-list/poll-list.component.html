@@ -1,0 +1,59 @@
+<div *ngIf="polls$ | async as polls; else noPolls" class="polls-container">
+  <app-poll-list-item
+    *ngFor="let poll of polls"
+    [poll]="poll"
+    class="polls-container"
+  >
+  </app-poll-list-item>
+</div>
+<div *ngIf="pagination$ | async as pagination">
+  <div class="btn-group text-center" role="group" aria-label="Pagination">
+    <button
+      type="button"
+      class="btn btn-secondary"
+      title="First"
+      (click)="paginationChange(0)"
+      [disabled]="pagination.page < 1"
+    >
+      <i class="fas fa-angle-double-left"></i> First
+    </button>
+    <button
+      type="button"
+      class="btn btn-secondary"
+      title="Previous"
+      (click)="paginationChange(pagination.page - 1)"
+      [disabled]="pagination.page < 1"
+    >
+      <i class="fas fa-chevron-left"></i> Previous
+    </button>
+    <input
+      type="text"
+      placeholder="Page Size"
+      [ngModel]="pageSize | async"
+      (ngModelChange)="pageSize.next($event); paginationChange(0)"
+    />
+    <button
+      type="button"
+      class="btn btn-secondary"
+      title="Next"
+      (click)="paginationChange(pagination.page + 1)"
+      [disabled]="pagination.last"
+    >
+      Next <i class="fas fa-chevron-right"></i>
+    </button>
+    <button
+      type="button"
+      class="btn btn-secondary"
+      title="Last"
+      (click)="paginationChange(pagination.totalPages - 1)"
+      [disabled]="pagination.last"
+    >
+      Last <i class="fas fa-angle-double-right"></i>
+    </button>
+  </div>
+</div>
+<ng-template #noPolls>
+  <div class="polls-container no-polls-found">
+    <span>No Polls Found.</span>
+  </div>
+</ng-template>
