@@ -1,0 +1,18 @@
+<div
+  class="polls-container"
+  *ngIf="(polls$ | async).length > 0; else templateForEmpty"
+>
+  <ng-container>
+    <app-poll-item
+      *ngFor="let poll of polls$ | async"
+      [poll]="poll"
+      class="polls-container"
+    >
+    </app-poll-item>
+  </ng-container>
+</div>
+<ng-template #templateForEmpty>
+  <div class="polls-container no-polls-found">
+    <span>No Polls Found.</span>
+  </div>
+</ng-template>

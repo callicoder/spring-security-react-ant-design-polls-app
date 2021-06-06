@@ -1,0 +1,21 @@
+<ng-container *ngIf="vm$ | async as vm; else noPolls">
+  <div *ngIf="vm.polls.length > 0" class="polls-container">
+    <app-poll-item
+      *ngFor="let poll of vm.polls"
+      [poll]="poll"
+      class="polls-container"
+    >
+    </app-poll-item>
+    <div class="d-flex justify-content-center">
+      <app-pagination-buttons-widget
+        [pagination]="vm.pagination"
+        (selectedPagination)="onPaginationChange($event)"
+      ></app-pagination-buttons-widget>
+    </div>
+  </div>
+</ng-container>
+<ng-template #noPolls>
+  <div class="d-flex justify-content-center">
+    <h2 class="text-secondary">No Polls Found.</h2>
+  </div>
+</ng-template>

@@ -1,0 +1,19 @@
+<div class="col-sm-6 offset-sm-3">
+  <div class="user-profile" *ngIf="user$ | async as user">
+    <app-user-info [user]="user"></app-user-info>
+    <div>
+      <tabset class="nav-fill">
+        <tab heading="{{ user.pollCount }} Polls">
+          <div>
+            <app-user-poll-list [username]="user.username"></app-user-poll-list>
+          </div>
+        </tab>
+        <tab heading="{{ user.voteCount }} Votes">
+          <div>
+            <app-user-vote-list [username]="user.username"></app-user-vote-list>
+          </div>
+        </tab>
+      </tabset>
+    </div>
+  </div>
+</div>

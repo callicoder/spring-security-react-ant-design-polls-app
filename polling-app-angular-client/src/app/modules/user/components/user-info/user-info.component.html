@@ -1,0 +1,16 @@
+<div class="user-details">
+  <div class="user-avatar">
+    <ngx-avatar
+      class="user-avatar-circle"
+      name="{{ user.username }}"
+      size="100"
+    ></ngx-avatar>
+  </div>
+  <div class="user-summary">
+    <div class="full-name">{{ user.name }}</div>
+    <div class="username">@{{ user.username }}</div>
+    <div class="user-joined">
+      Joined {{ user.joinedAt | date: "MMMM yyyy" }}
+    </div>
+  </div>
+</div>
