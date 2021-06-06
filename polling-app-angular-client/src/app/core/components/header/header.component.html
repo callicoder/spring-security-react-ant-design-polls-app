@@ -1,0 +1,112 @@
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <i-bs name="ui-radios" width="2rem" height="2rem"></i-bs>
+        Polling App
+      </a>
+      <button
+        (click)="isCollapsed = !isCollapsed"
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div
+        [collapse]="isCollapsed"
+        class="collapse navbar-collapse d-flex justify-content-end"
+        id="navbarSupportedContent"
+      >
+        <ul *ngIf="isLoggedIn$ | async" class="navbar-nav">
+          <li class="nav-item" [routerLink]="['/']" routerLinkActive="active">
+            <a class="nav-link" href="#"
+              ><i-bs
+                name="house"
+                aria-hidden="true"
+                tooltip="Home"
+                placement="bottom"
+                width="1.5rem"
+                height="1.5rem"
+              ></i-bs>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              [routerLink]="['/polls/new']"
+              routerLinkActive="active"
+              ><i-bs
+                name="ui-radios"
+                aria-hidden="true"
+                tooltip="New Poll"
+                placement="bottom"
+                width="1.5rem"
+                height="1.5rem"
+              ></i-bs
+            ></a>
+          </li>
+          <li class="nav-item dropdown" dropdown>
+            <a
+              class="nav-link dropdown-toggle"
+              data-bs-toggle="dropdown"
+              href="#"
+              role="button"
+              aria-haspopup="true"
+              aria-expanded="false"
+              dropdownToggle
+              (click)="(false)"
+              ><i-bs
+                name="person"
+                aria-hidden="true"
+                width="1.5rem"
+                height="1.5rem"
+              ></i-bs
+            ></a>
+            <div *dropdownMenu class="dropdown-menu dropdown-menu-right">
+              <div class="dropdown-item-text fw-bold" role="menuitem">
+                {{ (user$ | async).name }}
+              </div>
+              <div class="dropdown-item-text" role="menuitem">
+                @{{ (user$ | async).username }}
+              </div>
+              <div class="dropdown-divider"></div>
+              <a
+                class="dropdown-item"
+                role="menuitem"
+                [routerLink]="['/users', (user$ | async).username]"
+                >Profile</a
+              >
+              <button class="btn btn-link dropdown-item" (click)="logout()">
+                Logout
+              </button>
+            </div>
+          </li>
+        </ul>
+        <div *ngIf="!(isLoggedIn$ | async)">
+          <button
+            type="button"
+            class="btn btn-primary"
+            [routerLink]="['/auth/login']"
+            routerLinkActive="active"
+          >
+            Login
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            [routerLink]="['/auth/signup']"
+            routerLinkActive="active"
+          >
+            Signup
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>

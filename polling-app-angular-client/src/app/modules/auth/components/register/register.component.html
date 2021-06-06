@@ -1,0 +1,97 @@
+<div class="col-sm-6 offset-sm-3">
+  <h2>Sign Up</h2>
+  <form [formGroup]="signUpForm" (ngSubmit)="onSignUpSubmit()">
+    <div class="form-group mb-3">
+      <label for="name">Full Name:</label>
+      <input
+        type="text"
+        formControlName="name"
+        class="form-control"
+        placeholder="Your full name"
+        [ngClass]="{ 'is-invalid': isFormFieldInvalid('name') }"
+      />
+      <div *ngIf="isFormFieldInvalid('name')" class="invalid-feedback">
+        <div *ngIf="formField.name.errors.required">Full Name is required!</div>
+        <div *ngIf="formField.name.errors.minlength">
+          Name is too short (Minimum 4 characters needed.)
+        </div>
+      </div>
+    </div>
+    <div class="form-group mb-3">
+      <label for="username">Username:</label>
+      <input
+        type="text"
+        formControlName="username"
+        class="form-control"
+        placeholder="A unique username"
+        [ngClass]="{
+          'is-invalid': isFormFieldInvalid('username'),
+          'is-valid': formField.username.valid
+        }"
+      />
+      <div *ngIf="isFormFieldInvalid('username')" class="invalid-feedback">
+        <div *ngIf="formField.username.errors?.required">
+          Username is required!
+        </div>
+        <div *ngIf="formField.username.errors?.minlength">
+          Username is too short (Minimum 3 characters needed.)
+        </div>
+        <div *ngIf="formField.username.errors?.maxlength">
+          Username is too long (Maximum 15 characters needed.)
+        </div>
+        <div *ngIf="formField.username.errors?.usernameTaken">
+          This username is already taken
+        </div>
+      </div>
+    </div>
+    <div class="form-group mb-3">
+      <label for="lastName">Email:</label>
+      <input
+        type="text"
+        formControlName="email"
+        class="form-control"
+        placeholder="Your email"
+        [ngClass]="{
+          'is-invalid': isFormFieldInvalid('email'),
+          'is-valid': formField.email.valid
+        }"
+      />
+      <div *ngIf="isFormFieldInvalid('email')" class="invalid-feedback">
+        <div *ngIf="formField.email.errors?.required">
+          Email may not be empty
+        </div>
+        <div *ngIf="formField.email.errors?.email">Email not valid</div>
+        <div *ngIf="formField.email.errors?.emailTaken">
+          This Email is already registered
+        </div>
+      </div>
+    </div>
+    <div class="form-group mb-3">
+      <label for="password">Password:</label>
+      <input
+        type="password"
+        formControlName="password"
+        class="form-control"
+        placeholder="A password between 6 to 20 characters"
+        autocomplete="off"
+        [ngClass]="{ 'is-invalid': isFormFieldInvalid('password') }"
+      />
+      <div *ngIf="isFormFieldInvalid('password')" class="invalid-feedback">
+        <div *ngIf="formField.password.errors.required">
+          Please input your Password!
+        </div>
+        <div *ngIf="formField.password.errors.minlength">
+          Password is too short (Minimum 6 characters needed.)
+        </div>
+        <div *ngIf="formField.password.errors.maxlength">
+          Password is too long (Maximum 20 characters needed.)
+        </div>
+      </div>
+    </div>
+    <button class="btn btn-primary btn-block" [disabled]="!signUpForm.valid">
+      Sign up
+    </button>
+    Already registered?
+    <a href="#" [routerLink]="['/auth/login']">Login now!</a>
+  </form>
+</div>

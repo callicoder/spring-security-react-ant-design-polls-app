@@ -4,8 +4,10 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MyNgxBootstrapModule } from './modules/my-ngx-bootstrap.module';
 import { MyBootstrapIconsModule } from './modules/my-bootstrap-icons.module';
+import { PaginationButtonsWidgetComponent } from './components/pagination-buttons-widget/pagination-buttons-widget.component';
 
 @NgModule({
+  declarations: [PaginationButtonsWidgetComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -21,6 +23,7 @@ import { MyBootstrapIconsModule } from './modules/my-bootstrap-icons.module';
     ReactiveFormsModule,
     MyNgxBootstrapModule,
     MyBootstrapIconsModule,
+    PaginationButtonsWidgetComponent,
   ],
 })
 export class SharedModule {}

@@ -2,18 +2,17 @@ import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { throwIfAlreadyLoaded } from './module-import.guard';
-import { AuthModule } from '../auth/auth.module';
+import { AuthModule } from '../modules/auth/auth.module';
 import { SharedModule } from './../shared/shared.module';
 
-import { NavbarComponent } from './components/navbar/navbar.component';
+import { HeaderComponent } from './components/header/header.component';
 import { PageNotFoundComponentComponent } from './components/page-not-found/page-not-found-component.component';
-import { AuthTokenInterceptor } from '../auth/interceptors/auth-token.interceptor';
-import { ErrorInterceptor } from '../auth/interceptors/error.interceptor';
+import { AuthTokenInterceptor } from '../modules/auth/interceptors/auth-token.interceptor';
 
 @NgModule({
-  declarations: [NavbarComponent, PageNotFoundComponentComponent],
-  imports: [HttpClientModule, SharedModule],
-  exports: [AuthModule, SharedModule, NavbarComponent],
+  declarations: [HeaderComponent, PageNotFoundComponentComponent],
+  imports: [HttpClientModule, SharedModule, AuthModule],
+  exports: [SharedModule, HeaderComponent],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthTokenInterceptor, multi: true },
     // { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

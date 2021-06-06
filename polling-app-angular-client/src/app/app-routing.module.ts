@@ -4,21 +4,21 @@ import { PageNotFoundComponentComponent } from './core/components/page-not-found
 
 const routes: Routes = [
   {
-    path: '',
-    loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
+    path: 'polls',
+    loadChildren: () =>
+      import('./modules/polls/polls.module').then((m) => m.PollsModule),
   },
   {
     path: 'auth',
-    loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
-  },
-  {
-    path: 'poll',
-    loadChildren: () => import('./poll/poll.module').then((m) => m.PollModule),
+    loadChildren: () =>
+      import('./modules/auth/auth.module').then((m) => m.AuthModule),
   },
   {
     path: 'users',
-    loadChildren: () => import('./user/user.module').then((m) => m.UserModule),
+    loadChildren: () =>
+      import('./modules/user/user.module').then((m) => m.UserModule),
   },
+  { path: '', pathMatch: 'full', redirectTo: 'polls' },
   { path: '**', component: PageNotFoundComponentComponent },
 ];
 

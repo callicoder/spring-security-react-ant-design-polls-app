@@ -1,0 +1,66 @@
+<div class="col-sm-6 offset-sm-3">
+  <h2>Login</h2>
+  <form [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()">
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span
+          class="input-group-text"
+          [ngClass]="{
+            'border border-danger bg-danger text-white':
+              isFormFieldInvalid('usernameOrEmail')
+          }"
+          ><i-bs name="person" width="1.5rem" height="1.5rem"></i-bs
+        ></span>
+      </div>
+      <input
+        type="text"
+        formControlName="usernameOrEmail"
+        class="form-control"
+        placeholder="Username or Email"
+        [ngClass]="{
+          'is-invalid': isFormFieldInvalid('usernameOrEmail')
+        }"
+      />
+      <div
+        *ngIf="isFormFieldInvalid('usernameOrEmail')"
+        class="invalid-feedback"
+      >
+        <div *ngIf="formField.usernameOrEmail.errors.required">
+          Please input your username or email!
+        </div>
+      </div>
+    </div>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span
+          class="input-group-text"
+          [ngClass]="{
+            'border border-danger bg-danger text-white':
+              isFormFieldInvalid('password')
+          }"
+          ><i-bs name="lock" width="1.5rem" height="1.5rem"></i-bs
+        ></span>
+      </div>
+      <input
+        type="password"
+        formControlName="password"
+        class="form-control"
+        placeholder="Password"
+        [ngClass]="{ 'is-invalid': isFormFieldInvalid('password') }"
+      />
+      <div *ngIf="isFormFieldInvalid('password')" class="invalid-feedback">
+        <div *ngIf="formField.password.errors.required">
+          Please input your Password!
+        </div>
+      </div>
+    </div>
+    <button
+      class="btn btn-primary btn-block mb-3"
+      [disabled]="!loginForm.valid"
+    >
+      Login
+    </button>
+    Or
+    <a href="#" [routerLink]="['/auth/signup']">register now!</a>
+  </form>
+</div>
