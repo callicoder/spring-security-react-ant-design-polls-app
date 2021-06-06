@@ -5,6 +5,7 @@ import { select, Store } from '@ngrx/store';
 import { AppState } from 'src/app/store';
 import * as PollSelector from './poll.selectors';
 import { PollService } from '../services/poll.service';
+import { VoteInfo } from '../models/vote-info';
 
 @Injectable({
   providedIn: 'root',
@@ -33,5 +34,9 @@ export class PollFacade {
       },
     };
     return this.pollService.create(polRequest);
+  }
+
+  castVote(voteData: VoteInfo) {
+    return this.pollService.castVote(voteData);
   }
 }

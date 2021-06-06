@@ -12,7 +12,10 @@ import {
 import { of } from 'rxjs';
 
 import * as AuthActions from '../actions/auth.actions';
+import * as AuthSelectors from '../selectors/auth.selectors';
 import { AuthService } from 'src/app/modules/auth/services/auth.service';
+import { Store } from '@ngrx/store';
+import { AppState } from '..';
 
 @Injectable()
 export class AuthEffects {
@@ -88,5 +91,26 @@ export class AuthEffects {
     { dispatch: false }
   );
 
-  constructor(private actions$: Actions, private authService: AuthService) {}
+  checAuth$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthActions.checkAuth),
+      switchMap(() =>
+        this.store
+          .select(AuthSelectors.selectIsLoggedIn)
+          .pipe(
+            map((isLoggedIn) =>
+              isLoggedIn
+                ? AuthActions.checkAuthSuccess()
+                : AuthActions.checkAuthFailure()
+            )
+          )
+      )
+    )
+  );
+
+  constructor(
+    private actions$: Actions,
+    private authService: AuthService,
+    private store: Store<AppState>
+  ) {}
 }

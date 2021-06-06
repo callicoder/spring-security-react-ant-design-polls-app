@@ -65,6 +65,15 @@ export class AlertEffects {
     { dispatch: false }
   );
 
+  userIsNotLoggedIn$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(fromAuthActions.checkAuthFailure),
+        tap(() => this.alertService.danger('Please login to vote.'))
+      ),
+    { dispatch: false }
+  );
+
   unableToLoadPolls$ = createEffect(
     () =>
       this.actions$.pipe(

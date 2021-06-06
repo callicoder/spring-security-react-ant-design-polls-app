@@ -64,7 +64,7 @@
                   [value]="choice.id"
                   (change)="handleVoteChange(poll, choice.id)"
                 />
-                <label class="pl-2" [attr.for]="choice">{{
+                <label class="ps-2" [attr.for]="choice">{{
                   choice.text
                 }}</label>
               </div>
@@ -74,7 +74,7 @@
       </div>
       <div class="card-footer text-muted">
         <button
-          class="btn btn-outline-success mr-2"
+          class="btn btn-outline-success me-2"
           *ngIf="!poll.expired && !poll.selectedChoice"
           [disabled]="!currentVote"
           (click)="handleVoteSubmit()"

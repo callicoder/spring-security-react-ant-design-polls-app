@@ -1,7 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { first } from 'rxjs/operators';
+import { AuthFacade } from 'src/app/store/facades/auth.facade';
 import { ChoiceInfo } from '../../models/choice-info';
 import { PollInfo } from '../../models/poll-info';
+import { VoteInfo } from '../../models/vote-info';
+import { PollFacade } from '../../state/poll-facade';
 
 @Component({
   selector: 'app-poll-item',
@@ -13,7 +17,11 @@ export class PollItemComponent implements OnInit {
   currentVote: number;
   voteForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private authFacade: AuthFacade,
+    private pollFacade: PollFacade
+  ) {}
 
   ngOnInit(): void {
     this.voteForm = this.formBuilder.group({
@@ -80,31 +88,24 @@ export class PollItemComponent implements OnInit {
   }
 
   handleVoteSubmit() {
-    // if (!this.isLoggedIn()) {
-    //   this.toastr.info('Please login to vote.', 'Polling App');
-    //   this.router.navigate(['/login']);
-    // }
-    // let voteData = {} as VoteInfo;
-    // voteData.pollId = this.poll.id;
-    // voteData.choiceId = this.voteForm.get('choiceGroup').value;
-    // this.pollService
-    //   .castPoll(voteData)
-    //   .pipe(first())
-    //   .subscribe(
-    //     (data) => {
-    //       this.poll = data;
-    //     },
-    //     (error) => {
-    //       if (error.status === 401) {
-    //         // this.authService.logout();
-    //         this.toastr.error('You have been logged out. Please login to vote');
-    //         this.router.navigate(['/login']);
-    //       } else {
-    //         this.toastr.error(
-    //           error || 'Sorry! Something went wrong. Please try again!'
-    //         );
-    //       }
-    //     }
-    //   );
+    if (!this.authFacade.checkAuth()) {
+      return;
+    }
+
+    let voteData = {} as VoteInfo;
+    voteData.pollId = this.poll.id;
+    voteData.choiceId = this.voteForm.get('choiceGroup').value;
+
+    this.pollFacade
+      .castVote(voteData)
+      .pipe(first())
+      .subscribe(
+        (data) => {
+          this.poll = data;
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
   }
 }

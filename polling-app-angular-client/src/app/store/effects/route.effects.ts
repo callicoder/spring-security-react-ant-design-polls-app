@@ -20,7 +20,10 @@ export class RouteEffects {
   goLogin$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(fromAuthActions.registerUserSuccess),
+        ofType(
+          fromAuthActions.registerUserSuccess,
+          fromAuthActions.checkAuthFailure
+        ),
         tap((action) => {
           this.router.navigate(['/auth/login']);
         })

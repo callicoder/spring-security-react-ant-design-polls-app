@@ -6,6 +6,8 @@ import { AppState } from '../index';
 import * as fromAuthActions from '../actions/auth.actions';
 import * as fromAuthSelectors from '../selectors/auth.selectors';
 import { LoginRequestInfo } from 'src/app/modules/auth/models/login-request-info';
+import { map, switchMap, tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -30,5 +32,17 @@ export class AuthFacade {
 
   browserReload() {
     this.store.dispatch(fromAuthActions.browserReload());
+  }
+
+  checkAuth(): boolean {
+    let isAuthenticated = false;
+
+    this.store.dispatch(fromAuthActions.checkAuth());
+
+    this.isLoggedIn$.subscribe((authState) => {
+      isAuthenticated = authState;
+    });
+
+    return isAuthenticated;
   }
 }

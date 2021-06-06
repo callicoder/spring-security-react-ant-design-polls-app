@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { PaginatedResult } from '../../../shared/models/pagination-info';
 import { PollInfo } from '../models/poll-info';
+import { VoteInfo } from '../models/vote-info';
 
 @Injectable({
   providedIn: 'root',
@@ -42,35 +43,7 @@ export class PollService {
     );
   }
 
-  // getUserCreatedPolls(username, page, size) {
-  //   page = page || 0;
-  //   size = size || 30;
-  //   return this.http.get<any>(
-  //     `/api/users/${username}/polls?page=${page}&size=${size}`
-  //   );
-  // }
-
-  // getUserVotedPolls(username, page, size) {
-  //   page = page || 0;
-  //   size = size || 30;
-  //   return this.http.get<any>(
-  //     `/api/users/${username}/votes?page=${page}&size=${size}`
-  //   );
-  // }
-
-  // createPoll(pollData) {
-  //   let polRequest = {
-  //     question: pollData.question,
-  //     choices: pollData.choices,
-  //     pollLength: {
-  //       days: pollData.days,
-  //       hours: pollData.hours,
-  //     },
-  //   };
-  //   return this.http.post('/api/polls', polRequest);
-  // }
-
-  // castPoll(voteData: VoteInfo) {
-  //   return this.http.post<any>(`/api/polls/${voteData.pollId}/votes`, voteData);
-  // }
+  castVote(voteData: VoteInfo) {
+    return this.http.post<any>(`/api/polls/${voteData.pollId}/votes`, voteData);
+  }
 }

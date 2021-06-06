@@ -50,3 +50,13 @@ export const browserReloadSuccess = createAction(
   '[Auth Effect] Browser Reload Success',
   props<{ user: UserInfo }>()
 );
+
+export const checkAuth = createAction('[Poll Item Component] Check Auth');
+
+export const checkAuthSuccess = createAction(
+  '[Auth Effect] Check Auth Success'
+);
+
+export const checkAuthFailure = createAction(
+  '[Auth Effect] Check Auth Failure'
+);
