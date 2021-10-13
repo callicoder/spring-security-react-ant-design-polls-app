@@ -28,7 +28,7 @@ class App extends Component {
     this.state = {
       currentUser: null,
       isAuthenticated: false,
-      isLoading: false
+      isLoading: true
     }
     this.handleLogout = this.handleLogout.bind(this);
     this.loadCurrentUser = this.loadCurrentUser.bind(this);
@@ -42,9 +42,6 @@ class App extends Component {
   }
 
   loadCurrentUser() {
-    this.setState({
-      isLoading: true
-    });
     getCurrentUser()
     .then(response => {
       this.setState({
@@ -92,6 +89,7 @@ class App extends Component {
     if(this.state.isLoading) {
       return <LoadingIndicator />
     }
+    
     return (
         <Layout className="app-container">
           <AppHeader isAuthenticated={this.state.isAuthenticated} 
