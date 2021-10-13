@@ -19,10 +19,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import javax.validation.Valid;
 import java.net.URI;
 
-/**
- * Created by rajeevkumarsingh on 20/11/17.
- */
-
 @RestController
 @RequestMapping("/api/polls")
 public class PollController {
@@ -60,7 +56,6 @@ public class PollController {
         return ResponseEntity.created(location)
                 .body(new ApiResponse(true, "Poll Created Successfully"));
     }
-
 
     @GetMapping("/{pollId}")
     public PollResponse getPollById(@CurrentUser UserPrincipal currentUser,

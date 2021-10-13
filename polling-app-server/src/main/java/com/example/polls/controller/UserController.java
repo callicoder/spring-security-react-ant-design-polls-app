@@ -74,7 +74,6 @@ public class UserController {
         return pollService.getPollsCreatedBy(username, currentUser, page, size);
     }
 
-
     @GetMapping("/users/{username}/votes")
     public PagedResponse<PollResponse> getPollsVotedBy(@PathVariable(value = "username") String username,
                                                        @CurrentUser UserPrincipal currentUser,
