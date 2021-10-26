@@ -27,7 +27,7 @@ spec:
             memory: "200Mi"
         env:                  # Environment variables supplied to the Pod
         - name: SPRING_DATASOURCE_USERNAME # Name of the environment variable
-          valueFrom:          # Get the value of environment variable from kubernetes secrets
+          valueFrom:          # Get the value of environment variable from kubernetes url
             secretKeyRef:
               name: mysql-user-pass
               key: username
@@ -44,12 +44,12 @@ spec:
 ---
 apiVersion: v1                # API version
 kind: Service                 # Type of the kubernetes resource
-metadata:                     
+metadata:
   name: polling-app-server    # Name of the kubernetes resource
   labels:                     # Labels that will be applied to this resource
     app: polling-app-server
-spec:                         
-  type: NodePort              # The service will be exposed by opening a Port on each node and proxying it. 
+spec:
+  type: NodePort              # The service will be exposed by opening a Port on each node and proxying it.
   selector:
     app: polling-app-server   # The service exposes Pods with label `app=polling-app-server`
   ports:                      # Forward incoming connections on port 8080 to the target port 8080
