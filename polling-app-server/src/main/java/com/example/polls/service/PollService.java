@@ -192,7 +192,7 @@ public class PollService {
             throw new BadRequestException("Sorry! This Poll has already expired");
         }
 
-        User user = userRepository.getOne(currentUser.getId());
+        User user = userRepository.getById(currentUser.getId());
 
         Choice selectedChoice = poll.getChoices().stream()
                 .filter(choice -> choice.getId().equals(voteRequest.getChoiceId()))
