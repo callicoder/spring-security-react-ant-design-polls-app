@@ -15,7 +15,9 @@ import javax.persistence.MappedSuperclass;
 )
 public abstract class UserDateAudit extends DateAudit {
 
-    @CreatedBy
+    private static final long serialVersionUID = -5668994881302355970L;
+
+	@CreatedBy
     private Long createdBy;
 
     @LastModifiedBy
