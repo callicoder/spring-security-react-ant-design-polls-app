@@ -15,7 +15,9 @@ import java.util.List;
 @Entity
 @Table(name = "polls")
 public class Poll extends UserDateAudit {
-    @Id
+    private static final long serialVersionUID = -8416404242020324624L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
