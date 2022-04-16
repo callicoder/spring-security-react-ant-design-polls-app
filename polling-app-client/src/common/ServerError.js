@@ -3,7 +3,7 @@ import './ServerError.css';
 import { Link } from 'react-router-dom';
 import { Button } from 'antd';
 
-class NotFound extends Component {
+class ServerError extends Component {
     render() {
         return (
             <div className="server-error-page">
@@ -19,4 +19,4 @@ class NotFound extends Component {
     }
 }
 
-export default NotFound;
+export default ServerError;

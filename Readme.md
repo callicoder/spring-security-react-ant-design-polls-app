@@ -1,8 +1,6 @@
 ## Building a Full Stack Polls app similar to twitter polls with Spring Boot, Spring Security, JWT, React and Ant Design
 
-### Live Demo
- 	 
-The application is hosted on AWS free tier. Check out the live demo at https://polls.callicoder.com
+![App Screenshot](screenshot.png)
 
 ### Tutorials
 
@@ -45,7 +43,7 @@ I've written a complete tutorial series for this application on The CalliCoder B
 	mvn spring-boot:run
 	```
 
-	The server will start on port 5000. The spring boot app includes the front end build also, so you'll be able to access the complete application on `http://localhost:5000`.
+	The server will start on port 8080.
 
 	You can also package the application in the form of a `jar` file and then run it like so -
 
@@ -53,13 +51,13 @@ I've written a complete tutorial series for this application on The CalliCoder B
 	mvn package
 	java -jar target/polls-0.0.1-SNAPSHOT.jar
 	```
-5. **Add the default Roles**
+5. **Default Roles**
 	
-	The spring boot app uses role based authorization powered by spring security. Please execute the following sql queries in the database to insert the `USER` and `ADMIN` roles.
+	The spring boot app uses role based authorization powered by spring security. To add the default roles in the database, I have added the following sql queries in `src/main/resources/data.sql` file. Spring boot will automatically execute this script on startup -
 
 	```sql
-	INSERT INTO roles(name) VALUES('ROLE_USER');
-	INSERT INTO roles(name) VALUES('ROLE_ADMIN');
+	INSERT IGNORE INTO roles(name) VALUES('ROLE_USER');
+	INSERT IGNORE INTO roles(name) VALUES('ROLE_ADMIN');
 	```
 
 	Any new user who signs up to the app is assigned the `ROLE_USER` by default.

@@ -1,0 +1,2 @@
+$ minikube list
+$ kubectl port-forward service/polling-app-server 8080:8080

@@ -1,0 +1,38 @@
+apiVersion: apps/v1             # API version
+kind: Deployment                # Type of kubernetes resource
+metadata:
+  name: polling-app-client      # Name of the kubernetes resource
+spec:
+  replicas: 1                   # No of replicas/pods to run
+  selector:                     
+    matchLabels:                # This deployment applies to Pods matching the specified labels
+      app: polling-app-client
+  template:                     # Template for creating the Pods in this deployment
+    metadata:
+      labels:                   # Labels that will be applied to all the Pods in this deployment
+        app: polling-app-client
+    spec:                       # Spec for the containers that will run inside the Pods
+      containers:
+      - name: polling-app-client
+        image: callicoder/polling-app-client:1.0.0
+        imagePullPolicy: IfNotPresent
+        ports:
+          - name: http
+            containerPort: 80   # Should match the Port that the container listens on
+        resources:
+          limits:
+            cpu: 0.2
+            memory: "10Mi"
+---
+apiVersion: v1                  # API version
+kind: Service                   # Type of kubernetes resource
+metadata:
+  name: polling-app-client      # Name of the kubernetes resource
+spec:
+  type: NodePort                # Exposes the service by opening a port on each node
+  selector:
+    app: polling-app-client     # Any Pod matching the label `app=polling-app-client` will be picked up by this service
+  ports:                        # Forward incoming connections on port 80 to the target port 80 in the Pod
+  - name: http
+    port: 80
+    targetPort: 80

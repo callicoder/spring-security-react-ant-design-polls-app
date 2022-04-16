@@ -68,11 +68,11 @@ class PollList extends Component {
         
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this.loadPollList();
     }
 
-    componentWillReceiveProps(nextProps) {
+    componentDidUpdate(nextProps) {
         if(this.props.isAuthenticated !== nextProps.isAuthenticated) {
             // Reset State
             this.setState({

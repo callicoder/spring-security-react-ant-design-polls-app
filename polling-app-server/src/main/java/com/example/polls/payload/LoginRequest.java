@@ -2,9 +2,6 @@ package com.example.polls.payload;
 
 import javax.validation.constraints.NotBlank;
 
-/**
- * Created by rajeevkumarsingh on 02/08/17.
- */
 public class LoginRequest {
     @NotBlank
     private String usernameOrEmail;

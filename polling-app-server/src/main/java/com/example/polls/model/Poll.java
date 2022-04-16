@@ -12,9 +12,6 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by rajeevkumarsingh on 20/11/17.
- */
 @Entity
 @Table(name = "polls")
 public class Poll extends UserDateAudit {
