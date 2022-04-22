@@ -1,0 +1,59 @@
+<div class="d-flex justify-content-center">
+  <div class="col-md-6 col-lg-6" *ngIf="userProfile$ | async as userProfile">
+    <app-user-detail [userProfile]="userProfile"></app-user-detail>
+    <nav>
+      <div
+        class="nav nav-tabs justify-content-center"
+        id="nav-tab"
+        role="tablist"
+      >
+        <button
+          class="nav-link active"
+          id="nav-poll-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#nav-poll"
+          type="button"
+          role="tab"
+          aria-controls="nav-poll"
+          aria-selected="true"
+        >
+          {{ userProfile.pollCount }} Poll
+        </button>
+        <button
+          class="nav-link"
+          id="nav-vote-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#nav-vote"
+          type="button"
+          role="tab"
+          aria-controls="nav-vote"
+          aria-selected="false"
+        >
+          {{ userProfile.voteCount }} Vote
+        </button>
+      </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+      <div
+        class="tab-pane fade show active"
+        id="nav-poll"
+        role="tabpanel"
+        aria-labelledby="nav-poll-tab"
+      >
+        <app-user-poll-list
+          [username]="userProfile.username"
+        ></app-user-poll-list>
+      </div>
+      <div
+        class="tab-pane fade"
+        id="nav-vote"
+        role="tabpanel"
+        aria-labelledby="nav-vote-tab"
+      >
+        <app-user-vote-list
+          [username]="userProfile.username"
+        ></app-user-vote-list>
+      </div>
+    </div>
+  </div>
+</div>

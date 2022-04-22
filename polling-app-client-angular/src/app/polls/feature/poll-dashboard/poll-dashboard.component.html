@@ -1,0 +1,10 @@
+<div class="d-flex justify-content-center mt-3">
+  <div class="col-md-6 col-lg-6">
+    <app-poll-list
+      *ngIf="polls$ | async as polls"
+      [polls]="polls"
+      (selectedPagination)="onPaginationChange($event)"
+      (vote)="onVote($event)"
+    ></app-poll-list>
+  </div>
+</div>

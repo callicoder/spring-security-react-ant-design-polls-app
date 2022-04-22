@@ -1,0 +1,13 @@
+<div class="d-flex justify-content-center my-4">
+  <span class="float-start me-1">
+    <app-avatar [name]="userProfile.username" [size]="120"></app-avatar>
+  </span>
+
+  <div>
+    <h2 class="ms-4">{{ userProfile.name }}</h2>
+    <h5 class="ms-4 text-muted">@{{ userProfile.username }}</h5>
+    <div class="ms-4 text-muted">
+      Joined {{ userProfile.joinedAt | date: "MMMM yyyy" }}
+    </div>
+  </div>
+</div>
