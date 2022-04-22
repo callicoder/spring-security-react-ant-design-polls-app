@@ -1,0 +1,47 @@
+<div class="btn-group text-center mb-5" role="group" aria-label="Pagination">
+  <button
+    type="button"
+    class="btn btn-secondary"
+    title="First"
+    (click)="paginationChangeEmit(0, pagination.size)"
+    [disabled]="pagination.page < 1"
+  >
+    <i class="fas fa-angle-double-left"></i> First
+  </button>
+  <button
+    type="button"
+    class="btn btn-secondary"
+    title="Previous"
+    (click)="paginationChangeEmit(pagination.page - 1, pagination.size)"
+    [disabled]="pagination.page < 1"
+  >
+    <i class="fas fa-chevron-left"></i> Previous
+  </button>
+  <select
+    class="form-select"
+    [ngModel]="pagination.size"
+    (ngModelChange)="paginationChangeEmit(0, $event)"
+  >
+    <option [ngValue]="5">5</option>
+    <option [ngValue]="10">10</option>
+    <option [ngValue]="30">30</option>
+  </select>
+  <button
+    type="button"
+    class="btn btn-secondary"
+    title="Next"
+    (click)="paginationChangeEmit(pagination.page + 1, pagination.size)"
+    [disabled]="pagination.last"
+  >
+    Next <i class="fas fa-chevron-right"></i>
+  </button>
+  <button
+    type="button"
+    class="btn btn-secondary"
+    title="Last"
+    (click)="paginationChangeEmit(pagination.totalPages - 1, pagination.size)"
+    [disabled]="pagination.last"
+  >
+    Last <i class="fas fa-angle-double-right"></i>
+  </button>
+</div>

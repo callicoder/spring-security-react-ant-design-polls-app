@@ -1,0 +1,7 @@
+<div class="mt-3">
+  <app-poll-list
+    *ngIf="votes$ | async as votes"
+    [polls]="votes"
+    (selectedPagination)="onPaginationChange($event)"
+  ></app-poll-list>
+</div>

@@ -1,0 +1,17 @@
+<ng-container *ngIf="polls.content; else noPollDataFound">
+  <div class="mb-3" *ngFor="let poll of polls.content">
+    <app-poll-detail [poll]="poll" (vote)="onVote($event)"></app-poll-detail>
+  </div>
+  <div class="d-flex justify-content-center" *ngIf="polls.pagination">
+    <app-pagination
+      [pagination]="polls.pagination"
+      (selectedPagination)="onPaginationChange($event)"
+    ></app-pagination>
+  </div>
+</ng-container>
+
+<ng-template #noPollDataFound>
+  <div class="d-flex justify-content-center mt-4">
+    <h4 class="text-secondary">No Polls Found.</h4>
+  </div>
+</ng-template>

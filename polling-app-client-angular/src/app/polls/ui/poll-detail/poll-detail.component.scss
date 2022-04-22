@@ -1,0 +1,21 @@
+.card-header .creator-link {
+  display: block;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.card-header .creator-link:hover .poll-creator-name {
+  color: #1890ff;
+  text-decoration: underline;
+}
+
+.poll-creator-name {
+  font-size: 16px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.85);
+  margin-top: 4px;
+  display: inline-block;
+  margin-right: 8px;
+}

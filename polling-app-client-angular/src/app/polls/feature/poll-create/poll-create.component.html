@@ -1,0 +1,108 @@
+<div class="d-flex justify-content-center">
+  <div class="col-md-8 col-lg-4">
+    <h2>Create Poll</h2>
+
+    <form [formGroup]="pollForm" (ngSubmit)="onSubmit()" autocomplete="off">
+      <div class="mb-3">
+        <textarea
+          formControlName="question"
+          class="form-control"
+          rows="3"
+          required
+          placeholder="Enter your question"
+          [ngClass]="{
+            'is-invalid':
+              formField['question'].touched && formField['question'].errors
+          }"
+        ></textarea>
+        <div
+          *ngIf="formField['question'].touched && formField['question'].errors"
+          class="invalid-feedback"
+        >
+          <div *ngIf="formField['question'].errors['required']">
+            Please enter your question!
+          </div>
+          <div *ngIf="formField['question'].errors['maxlength']">
+            Question is too long (Maximum 140 characters allowed.)
+          </div>
+        </div>
+      </div>
+
+      <div
+        formArrayName="choices"
+        *ngFor="let choice of choices.controls; let i = index"
+      >
+        <div class="input-group mb-3" [formGroupName]="i">
+          <input
+            class="form-control"
+            formControlName="text"
+            placeholder="Choice {{ i + 1 }}"
+          />
+          <div class="input-group-append">
+            <span
+              class="input-group-text bg-transparent border-0"
+              *ngIf="i > 1"
+            >
+              <i
+                class="bi bi-x-lg"
+                (click)="removeChoice(i)"
+                width="1.5rem"
+                height="1.5rem"
+              ></i>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group mb-3">
+        <button
+          class="btn btn-outline-secondary"
+          type="button"
+          (click)="addChoice()"
+          [disabled]="choices.controls.length > 5"
+        >
+          <i class="bi bi-plus-lg"></i>
+          Add a choice
+        </button>
+      </div>
+
+      <div class="form-group mb-3">
+        <div class="d-flex flex-row align-items-center">
+          <div class="pe-3">Poll length:</div>
+          <div class="">
+            <select
+              class="form-select d-inline-block"
+              id="day"
+              formControlName="days"
+            >
+              <option *ngFor="let day of dayList" [ngValue]="day">
+                {{ day }}
+              </option>
+            </select>
+          </div>
+          <div class="p-2">Days</div>
+          <div class="ps-3">
+            <select
+              class="form-select d-inline-block"
+              id="hour"
+              formControlName="hours"
+            >
+              <option *ngFor="let hour of hourList" [ngValue]="hour">
+                {{ hour }}
+              </option>
+            </select>
+          </div>
+          <div class="p-2">Hours</div>
+        </div>
+      </div>
+
+      <button
+        class="form-control btn btn-primary"
+        type="submit"
+        [disabled]="pollForm.invalid"
+      >
+        Create Poll
+      </button>
+    </form>
+  </div>
+</div>

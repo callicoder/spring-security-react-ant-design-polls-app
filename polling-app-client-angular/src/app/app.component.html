@@ -1,0 +1,11 @@
+<ff-alerts></ff-alerts>
+<header class="container">
+  <app-navbar
+    [userProfile]="userProfile$ | async"
+    (logoutEvent)="onLogOutEvent($event)"
+  ></app-navbar>
+</header>
+
+<div class="container mt-2">
+  <router-outlet></router-outlet>
+</div>

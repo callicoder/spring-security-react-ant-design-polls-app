@@ -1,0 +1,116 @@
+<div class="d-flex justify-content-center">
+  <div class="col-md-8 col-lg-4">
+    <h2>Sign Up</h2>
+
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" autocomplete="off">
+      <div class="mb-3">
+        <label for="name" class="form-label">Full Name:</label>
+        <input
+          type="text"
+          formControlName="name"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': isFormFieldInvalid('name') }"
+          id="name"
+          placeholder="Your full name"
+        />
+        <div *ngIf="isFormFieldInvalid('name')" class="invalid-feedback">
+          <div *ngIf="formField['name'].hasError('required')">
+            Full Name is required!
+          </div>
+          <div *ngIf="formField['name'].hasError('minlength')">
+            Name is too short (Minimum 4 characters needed.)
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="username" class="form-label">Username:</label>
+        <input
+          type="text"
+          formControlName="username"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': isFormFieldInvalid('username') }"
+          id="username"
+          placeholder="A unique username"
+        />
+        <div *ngIf="isFormFieldInvalid('username')" class="invalid-feedback">
+          <div *ngIf="formField['username'].hasError('required')">
+            Username is required!
+          </div>
+          <div *ngIf="formField['username'].hasError('minlength')">
+            Username is too short (Minimum 3 characters needed.)
+          </div>
+          <div *ngIf="formField['username'].hasError('maxlength')">
+            Username is too long (Maximum 15 characters needed.)
+          </div>
+          <div *ngIf="formField['username'].hasError('usernameTaken')">
+            This username is already taken
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="email" class="form-label">Email:</label>
+        <input
+          type="email"
+          formControlName="email"
+          class="form-control"
+          [ngClass]="{
+            'is-invalid': isFormFieldInvalid('email'),
+            'is-valid': formField['email'].valid
+          }"
+          id="email"
+          placeholder="Your email"
+        />
+        <div *ngIf="isFormFieldInvalid('email')" class="invalid-feedback">
+          <div *ngIf="formField['email'].hasError('required')">
+            Email may not be empty
+          </div>
+          <div *ngIf="formField['email'].hasError('email')">
+            Email not valid
+          </div>
+          <div *ngIf="formField['email'].hasError('emailTaken')">
+            This Email is already registered
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="password" class="form-label">Password:</label>
+        <input
+          type="password"
+          formControlName="password"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': isFormFieldInvalid('password') }"
+          id="password"
+          placeholder="A password between 6 to 20 characters"
+        />
+        <div *ngIf="isFormFieldInvalid('password')" class="invalid-feedback">
+          <div *ngIf="formField['password'].hasError('required')">
+            Please input your Password!
+          </div>
+          <div *ngIf="formField['password'].hasError('minlength')">
+            Password is too short (Minimum 6 characters needed.)
+          </div>
+          <div *ngIf="formField['password'].hasError('maxlength')">
+            Password is too long (Maximum 20 characters needed.)
+          </div>
+        </div>
+      </div>
+
+      <button
+        type="submit"
+        class="form-control btn btn-primary"
+        [disabled]="signupForm.invalid"
+      >
+        Sign up
+      </button>
+      <p class="mt-2">
+        Already registered?
+        <a class="text-decoration-none" href="#" [routerLink]="['/login']"
+          >Login now!</a
+        >
+      </p>
+    </form>
+  </div>
+</div>
