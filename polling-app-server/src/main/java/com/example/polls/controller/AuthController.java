@@ -10,7 +10,9 @@ import com.example.polls.payload.LoginRequest;
 import com.example.polls.payload.SignUpRequest;
 import com.example.polls.repository.RoleRepository;
 import com.example.polls.repository.UserRepository;
-import com.example.polls.security.JwtTokenProvider;
+
+import com.example.polls.security.jwt.JwtTokenProvider;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +27,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import javax.validation.Valid;
+
 import java.net.URI;
 import java.util.Collections;
 

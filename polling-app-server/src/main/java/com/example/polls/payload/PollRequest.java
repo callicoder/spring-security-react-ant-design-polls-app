@@ -1,9 +1,10 @@
 package com.example.polls.payload;
 
-import javax.validation.Valid;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
 import java.util.List;
 
 public class PollRequest {
@@ -12,7 +13,7 @@ public class PollRequest {
     private String question;
 
     @NotNull
-    @Size(min = 2, max = 6)
+    @Size(min = 2, max = 6, message = "the choices size must be from 2 to 6")
     @Valid
     private List<ChoiceRequest> choices;
 

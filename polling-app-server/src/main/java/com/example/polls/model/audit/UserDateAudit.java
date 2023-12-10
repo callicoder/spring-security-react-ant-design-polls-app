@@ -1,12 +1,9 @@
 package com.example.polls.model.audit;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.persistence.MappedSuperclass;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.LastModifiedBy;
-
-import javax.persistence.MappedSuperclass;
-
-
 
 @MappedSuperclass
 @JsonIgnoreProperties(
