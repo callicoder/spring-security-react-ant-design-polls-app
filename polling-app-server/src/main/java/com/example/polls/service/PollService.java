@@ -10,7 +10,7 @@ import com.example.polls.payload.VoteRequest;
 import com.example.polls.repository.PollRepository;
 import com.example.polls.repository.UserRepository;
 import com.example.polls.repository.VoteRepository;
-import com.example.polls.security.UserPrincipal;
+import com.example.polls.security.UserDetailsImpl;
 import com.example.polls.util.AppConstants;
 import com.example.polls.util.ModelMapper;
 import org.slf4j.Logger;
@@ -45,7 +45,7 @@ public class PollService {
 
     private static final Logger logger = LoggerFactory.getLogger(PollService.class);
 
-    public PagedResponse<PollResponse> getAllPolls(UserPrincipal currentUser, int page, int size) {
+    public PagedResponse<PollResponse> getAllPolls(UserDetailsImpl currentUser, int page, int size) {
         validatePageNumberAndSize(page, size);
 
         // Retrieve Polls
@@ -74,7 +74,7 @@ public class PollService {
                 polls.getSize(), polls.getTotalElements(), polls.getTotalPages(), polls.isLast());
     }
 
-    public PagedResponse<PollResponse> getPollsCreatedBy(String username, UserPrincipal currentUser, int page, int size) {
+    public PagedResponse<PollResponse> getPollsCreatedBy(String username, UserDetailsImpl currentUser, int page, int size) {
         validatePageNumberAndSize(page, size);
 
         User user = userRepository.findByUsername(username)
@@ -105,7 +105,7 @@ public class PollService {
                 polls.getSize(), polls.getTotalElements(), polls.getTotalPages(), polls.isLast());
     }
 
-    public PagedResponse<PollResponse> getPollsVotedBy(String username, UserPrincipal currentUser, int page, int size) {
+    public PagedResponse<PollResponse> getPollsVotedBy(String username, UserDetailsImpl currentUser, int page, int size) {
         validatePageNumberAndSize(page, size);
 
         User user = userRepository.findByUsername(username)
@@ -160,7 +160,7 @@ public class PollService {
         return pollRepository.save(poll);
     }
 
-    public PollResponse getPollById(Long pollId, UserPrincipal currentUser) {
+    public PollResponse getPollById(Long pollId, UserDetailsImpl currentUser) {
         Poll poll = pollRepository.findById(pollId).orElseThrow(
                 () -> new ResourceNotFoundException("Poll", "id", pollId));
 
@@ -184,7 +184,7 @@ public class PollService {
                 creator, userVote != null ? userVote.getChoice().getId(): null);
     }
 
-    public PollResponse castVoteAndGetUpdatedPoll(Long pollId, VoteRequest voteRequest, UserPrincipal currentUser) {
+    public PollResponse castVoteAndGetUpdatedPoll(Long pollId, VoteRequest voteRequest, UserDetailsImpl currentUser) {
         Poll poll = pollRepository.findById(pollId)
                 .orElseThrow(() -> new ResourceNotFoundException("Poll", "id", pollId));
 
@@ -247,7 +247,7 @@ public class PollService {
         return choiceVotesMap;
     }
 
-    private Map<Long, Long> getPollUserVoteMap(UserPrincipal currentUser, List<Long> pollIds) {
+    private Map<Long, Long> getPollUserVoteMap(UserDetailsImpl currentUser, List<Long> pollIds) {
         // Retrieve Votes done by the logged in user to the given pollIds
         Map<Long, Long> pollUserVoteMap = null;
         if(currentUser != null) {

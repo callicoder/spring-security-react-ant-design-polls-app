@@ -6,18 +6,21 @@ import com.example.polls.payload.*;
 import com.example.polls.repository.PollRepository;
 import com.example.polls.repository.UserRepository;
 import com.example.polls.repository.VoteRepository;
-import com.example.polls.security.UserPrincipal;
-import com.example.polls.service.PollService;
 import com.example.polls.security.CurrentUser;
+import com.example.polls.security.UserDetailsImpl;
+import com.example.polls.service.PollService;
 import com.example.polls.util.AppConstants;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+//@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api")
+//@RequiredArgsConstructor
 public class UserController {
 
     @Autowired
@@ -36,7 +39,7 @@ public class UserController {
 
     @GetMapping("/user/me")
     @PreAuthorize("hasRole('USER')")
-    public UserSummary getCurrentUser(@CurrentUser UserPrincipal currentUser) {
+    public UserSummary getCurrentUser(@CurrentUser UserDetailsImpl currentUser) {
         UserSummary userSummary = new UserSummary(currentUser.getId(), currentUser.getUsername(), currentUser.getName());
         return userSummary;
     }
@@ -68,7 +71,7 @@ public class UserController {
 
     @GetMapping("/users/{username}/polls")
     public PagedResponse<PollResponse> getPollsCreatedBy(@PathVariable(value = "username") String username,
-                                                         @CurrentUser UserPrincipal currentUser,
+                                                         @CurrentUser UserDetailsImpl currentUser,
                                                          @RequestParam(value = "page", defaultValue = AppConstants.DEFAULT_PAGE_NUMBER) int page,
                                                          @RequestParam(value = "size", defaultValue = AppConstants.DEFAULT_PAGE_SIZE) int size) {
         return pollService.getPollsCreatedBy(username, currentUser, page, size);
@@ -76,7 +79,7 @@ public class UserController {
 
     @GetMapping("/users/{username}/votes")
     public PagedResponse<PollResponse> getPollsVotedBy(@PathVariable(value = "username") String username,
-                                                       @CurrentUser UserPrincipal currentUser,
+                                                       @CurrentUser UserDetailsImpl currentUser,
                                                        @RequestParam(value = "page", defaultValue = AppConstants.DEFAULT_PAGE_NUMBER) int page,
                                                        @RequestParam(value = "size", defaultValue = AppConstants.DEFAULT_PAGE_SIZE) int size) {
         return pollService.getPollsVotedBy(username, currentUser, page, size);

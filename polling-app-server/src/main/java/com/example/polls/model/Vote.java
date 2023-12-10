@@ -1,7 +1,7 @@
 package com.example.polls.model;
 
 import com.example.polls.model.audit.DateAudit;
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "votes", uniqueConstraints = {
