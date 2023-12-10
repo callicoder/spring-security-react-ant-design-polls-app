@@ -1,0 +1,35 @@
+server:
+  port: 8080
+  error:
+    include-message: ALWAYS
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/polling_app?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC&useLegacyDatetimeCode=false
+    username: root
+    password: 123
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+  jackson:
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+    time-zone: UTC
+
+app:
+  jwtSecret: 9a02115a835ee03d5fb83cd8a468ea33e4090aaaec87f53c9fa54512bbef4db8dc656c82a315fa0c785c08b0134716b81ddcd0153d2a7556f2e154912cf5675f
+  jwtExpirationInMs: 604800000
+  cors:
+    allowedOrigins: http://localhost:3001, http://localhost:3002
+
+logging:
+  level:
+    root: info
+    web: debug
+    sql: info
+    org:springframework.web: DEBUG
+    org.springframework.security: DEBUG
+    org.springframework.boot.autoconfigure: DEBUG
